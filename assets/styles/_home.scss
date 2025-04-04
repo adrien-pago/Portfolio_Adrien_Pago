@@ -83,6 +83,7 @@ body {
     align-items: center;
     justify-content: center;
     z-index: 1;
+    padding-bottom: 5rem;
 
     @media (max-width: 768px) {
         width: 100%;
@@ -127,7 +128,7 @@ body {
                     height: $height;
                     top: random(80) * 1%;
                     left: -$width;
-                    animation-duration: (random(40) + 30) * 1s;
+                    animation-duration: (random(15) + 15) * 1s;
                     opacity: 0.9;
 
                     &::before {
@@ -226,12 +227,13 @@ body {
         border-radius: 20px;
         box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
         border: 1px solid rgba(255, 255, 255, 0.2);
-        transform: translateY(0);
+        transform: translateY(-5vh);
         transition: transform 0.3s ease, box-shadow 0.3s ease;
 
         @media (max-width: 768px) {
             padding: 2rem;
             width: 92%;
+            transform: translateY(-2vh);
         }
 
         &:hover {
