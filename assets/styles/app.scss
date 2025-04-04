@@ -6,6 +6,18 @@
 @import '~@fortawesome/fontawesome-free/scss/solid';
 @import '~@fortawesome/fontawesome-free/scss/brands';
 
+// Variables
+$primary: #0d6efd;
+$secondary: #6c757d;
+$success: #198754;
+$info: #0dcaf0;
+$warning: #ffc107;
+$danger: #dc3545;
+$light: #f8f9fa;
+$dark: #212529;
+$gradient-start: #2193b0;
+$gradient-end: #6dd5ed;
+
 // Import custom styles
 @import 'variables';
 @import 'layout';
@@ -18,174 +30,100 @@
 @import 'veille_details';
 @import 'contact';
 
-// Variables
-$primary: #0d6efd;
-$secondary: #6c757d;
-$success: #198754;
-$info: #0dcaf0;
-$warning: #ffc107;
-$danger: #dc3545;
-$light: #f8f9fa;
-$dark: #212529;
-$sidebar-bg: #2c3e50;
-$sidebar-color: #ecf0f1;
-$sidebar-active-color: #3498db;
-$content-bg: #f8f9fa;
-
-// Layout
-.wrapper {
-    display: flex;
-    width: 100%;
-    align-items: stretch;
+// Base styles
+body {
+    font-family: 'Poppins', sans-serif;
+    background-color: $light;
+    font-size: 16px;
     min-height: 100vh;
-}
+    margin: 0;
+    padding: 0;
 
-// Sidebar
-.sidebar {
-    min-width: 250px;
-    max-width: 250px;
-    background: $sidebar-bg;
-    color: $sidebar-color;
-    transition: all 0.3s;
-    position: fixed;
-    height: 100vh;
-    z-index: 999;
-
-    &.active {
-        margin-left: -250px;
-    }
-
-    .sidebar-header {
-        padding: 20px;
-        background: rgba(0, 0, 0, 0.1);
-        text-align: center;
-
-        .profile-img {
-            width: 120px;
-            height: 120px;
-            border-radius: 50%;
-            margin-bottom: 15px;
-            border: 3px solid rgba(255, 255, 255, 0.2);
-        }
-
-        h3 {
-            margin: 0;
-            font-size: 1.5rem;
-            font-weight: 600;
-        }
-    }
-
-    ul.components {
-        padding: 20px 0;
-        
-        li {
-            padding: 0 20px;
-            margin-bottom: 10px;
-
-            a {
-                padding: 10px 15px;
-                display: block;
-                color: $sidebar-color;
-                text-decoration: none;
-                transition: all 0.3s;
-                border-radius: 5px;
-
-                &:hover {
-                    background: rgba(255, 255, 255, 0.1);
-                }
-
-                &.active {
-                    background: $sidebar-active-color;
-                }
-
-                i {
-                    margin-right: 10px;
-                }
-            }
-        }
-    }
-
-    .sidebar-footer {
-        position: absolute;
-        bottom: 0;
-        width: 100%;
-        padding: 20px;
-        text-align: center;
-        background: rgba(0, 0, 0, 0.1);
-
-        .social-links {
-            display: flex;
-            justify-content: center;
-            gap: 15px;
-
-            .social-link {
-                color: $sidebar-color;
-                font-size: 1.2rem;
-                transition: all 0.3s;
-
-                &:hover {
-                    color: $sidebar-active-color;
-                }
-            }
-        }
+    @media (max-width: 768px) {
+        font-size: 15px;
     }
 }
 
-// Content
-#content {
-    width: 100%;
-    padding: 20px;
-    min-height: 100vh;
-    transition: all 0.3s;
-    margin-left: 250px;
-    background: $content-bg;
-
-    #sidebarCollapse {
-        margin-bottom: 20px;
-    }
+// Typography
+h1, h2, h3, h4, h5, h6 {
+    margin-bottom: 1rem;
+    color: $dark;
 }
 
-// Responsive
-@media (max-width: 768px) {
-    .sidebar {
-        margin-left: -250px;
-        
-        &.active {
-            margin-left: 0;
-        }
-    }
-    
-    #content {
-        margin-left: 0;
-    }
-}
-
-// Custom styles for content sections
-.section-title {
-    margin-bottom: 2rem;
-    padding-bottom: 1rem;
-    border-bottom: 2px solid $sidebar-active-color;
-}
-
+// Card styles
 .card {
     border: none;
     box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
     transition: transform 0.3s;
+    background: white;
+    border-radius: 12px;
+    overflow: hidden;
 
     &:hover {
         transform: translateY(-5px);
     }
 }
 
-// Custom styles
-body {
-    font-family: 'Poppins', sans-serif;
-    background-color: $light;
+// Section styles
+.section-title {
+    margin-bottom: 2rem;
+    padding-bottom: 1rem;
+    border-bottom: 2px solid $primary;
+    font-size: 2rem;
+    color: $dark;
+
+    @media (max-width: 768px) {
+        font-size: 1.75rem;
+        margin-bottom: 1.5rem;
+    }
 }
 
-// Main content styles
-main {
-    padding-top: 1.5rem;
+// Contact form styles
+.contact-form-container {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 2rem;
+
+    .card {
+        padding: 2rem;
+        
+        @media (max-width: 768px) {
+            padding: 1.5rem;
+        }
+    }
+
+    .form-group {
+        margin-bottom: 1.5rem;
+    }
+
+    .form-control {
+        border-radius: 8px;
+        border: 1px solid #dee2e6;
+        padding: 0.75rem;
+        
+        &:focus {
+            border-color: $primary;
+            box-shadow: 0 0 0 0.2rem rgba($primary, 0.25);
+        }
+    }
+
+    textarea.form-control {
+        min-height: 150px;
+    }
+
+    .btn-primary {
+        width: 100%;
+        padding: 0.75rem;
+        font-size: 1.1rem;
+        border-radius: 8px;
+        background: linear-gradient(135deg, $gradient-start, $gradient-end);
+        border: none;
+        
+        &:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+    }
 }
 
 // Typed text styles
@@ -193,17 +131,21 @@ main {
     font-size: 1.75rem;
     margin-bottom: 2rem;
     color: $primary;
+
+    @media (max-width: 768px) {
+        font-size: 1.5rem;
+    }
 }
 
 // Responsive adjustments
-@media (max-width: 767.98px) {
-    .sidebar {
-        position: static;
-        height: auto;
-        padding-top: 0;
+@media (max-width: 768px) {
+    .container {
+        padding-left: 15px;
+        padding-right: 15px;
     }
-    
-    main {
-        margin-left: 0 !important;
-    }
+
+    h1 { font-size: 2rem; }
+    h2 { font-size: 1.75rem; }
+    h3 { font-size: 1.5rem; }
+    p { font-size: 1rem; }
 } 

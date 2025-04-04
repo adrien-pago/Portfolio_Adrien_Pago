@@ -1,0 +1,20 @@
+<div class="veille-card">
+    <div class="veille-content">
+        <h3>{{ article.title }}</h3>
+        <p>{{ article.description|slice(0, 200) }}...</p>
+        <div class="veille-meta">
+            <span class="date">
+                <i class="far fa-calendar"></i>
+                {{ article.date|date('d/m/Y') }}
+            </span>
+            <span class="category">
+                <i class="fas fa-tag"></i>
+                {{ article.category }}
+            </span>
+        </div>
+        <a href="{{ path('app_veille_show', {'id': article.id}) }}" class="veille-link">
+            Lire la suite
+            <i class="fas fa-arrow-right"></i>
+        </a>
+    </div>
+</div> 

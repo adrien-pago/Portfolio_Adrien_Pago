@@ -2,6 +2,7 @@
 <html>
     <head>
         <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>{% block title %}Portfolio{% endblock %}</title>
         <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 128 128%22><text y=%221.2em%22 font-size=%2296%22>⚕️</text></svg>">
         {% block stylesheets %}
@@ -14,60 +15,69 @@
     </head>
     <body>
         <div class="wrapper">
-            <!-- Sidebar -->
-            <nav id="sidebar" class="sidebar">
-                <div class="sidebar-header">
-                     <img src="{{ asset('build/images/portrait.jpg') }}" alt="Profile" class="profile-img">
-                    <h3>Adrien Pago</h3>
-                </div>
-
-                <ul class="components">
-                    <li>
-                        <a href="{{ path('app_home') }}" class="{{ app.request.get('_route') == 'app_home' ? 'active' : '' }}">
-                            <i class="fas fa-home"></i> Accueil
-                        </a>
-                    </li>
-                    <li>
-                        <a href="{{ path('app_profile') }}" class="{{ app.request.get('_route') == 'app_profile' ? 'active' : '' }}">
-                            <i class="fas fa-user"></i> Profil
-                        </a>
-                    </li>
-                    <li>
-                        <a href="{{ path('app_projects') }}" class="{{ app.request.get('_route') == 'app_projects' ? 'active' : '' }}">
-                            <i class="fas fa-project-diagram"></i> Projets
-                        </a>
-                    </li>
-                    <li>
-                        <a href="{{ path('app_veille') }}" class="{{ app.request.get('_route') == 'app_veille' ? 'active' : '' }}">
-                            <i class="fas fa-newspaper"></i> Veille
-                        </a>
-                    </li>
-                    <li>
-                        <a href="{{ path('app_contact') }}" class="{{ app.request.get('_route') == 'app_contact' ? 'active' : '' }}">
-                            <i class="fas fa-envelope"></i> Contact
-                        </a>
-                    </li>
-                </ul>
-
-                <div class="sidebar-footer">
-                    <div class="social-links">
-                        <a href="#" class="social-link"><i class="fab fa-github"></i></a>
-                        <a href="#" class="social-link"><i class="fab fa-linkedin"></i></a>
-                        <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
-                    </div>
-                </div>
-            </nav>
-
-            <!-- Page Content -->
-            <div id="content">
-                <button type="button" id="sidebarCollapse" class="btn">
+            <!-- Header Mobile -->
+            <header class="mobile-header">
+                <h1 class="mobile-title">Portfolio - Adrien Pago</h1>
+                <button class="menu-toggle">
                     <i class="fas fa-bars"></i>
                 </button>
-                
-                <main class="container-fluid">
-                    {% block body %}{% endblock %}
-                </main>
-            </div>
+            </header>
+
+            <!-- Sidebar -->
+            <div class="sidebar-overlay"></div>
+            <aside class="sidebar">
+                <div class="profile">
+                    <div class="profile-image">
+                        <img src="{{ asset('build/images/portrait.jpg') }}" alt="Adrien Pago">
+                    </div>
+                    <h2>Adrien Pago</h2>
+                    <p>Développeur Full Stack</p>
+                </div>
+                <nav>
+                    <ul>
+                        <li>
+                            <a href="{{ path('app_home') }}" class="{{ app.request.get('_route') == 'app_home' ? 'active' : '' }}">
+                                <i class="fas fa-home"></i>
+                                Accueil
+                            </a>
+                        </li>
+                        <li>
+                            <a href="{{ path('app_profile') }}" class="{{ app.request.get('_route') == 'app_profile' ? 'active' : '' }}">
+                                <i class="fas fa-user"></i>
+                                Profil
+                            </a>
+                        </li>
+                        <li>
+                            <a href="{{ path('app_projects') }}" class="{{ app.request.get('_route') == 'app_projects' ? 'active' : '' }}">
+                                <i class="fas fa-project-diagram"></i>
+                                Projets
+                            </a>
+                        </li>
+                        <li>
+                            <a href="{{ path('app_veille') }}" class="{{ app.request.get('_route') == 'app_veille' ? 'active' : '' }}">
+                                <i class="fas fa-newspaper"></i>
+                                Veille
+                            </a>
+                        </li>
+                        <li>
+                            <a href="{{ path('app_contact') }}" class="{{ app.request.get('_route') == 'app_contact' ? 'active' : '' }}">
+                                <i class="fas fa-envelope"></i>
+                                Contact
+                            </a>
+                        </li>
+                    </ul>
+                </nav>
+                <div class="social-links">
+                    <a href="#" target="_blank"><i class="fab fa-github"></i></a>
+                    <a href="#" target="_blank"><i class="fab fa-linkedin"></i></a>
+                    <a href="#" target="_blank"><i class="fab fa-twitter"></i></a>
+                </div>
+            </aside>
+
+            <!-- Main Content -->
+            <main class="main-content">
+                {% block body %}{% endblock %}
+            </main>
         </div>
     </body>
 </html>

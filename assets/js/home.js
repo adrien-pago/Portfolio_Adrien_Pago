@@ -4,17 +4,21 @@ document.addEventListener('DOMContentLoaded', function() {
     // Animation du texte avec Typed.js
     const options = {
         strings: [
-            'Développeur Full Stack',
-            'Passionné par le Web',
-            'Expert Symfony',
-            'Créateur d\'Applications'
+            'Développeur Full Stack ',
+            'Développeur Web & Mobile',
+            'Créateur d\'Applications Desktop',
+            'Architecte Solutions Web'
         ],
         typeSpeed: 50,
-        backSpeed: 30,
+        backSpeed: 20,
         backDelay: 2000,
-        startDelay: 500,
+        startDelay: 1000,
         loop: true,
-        showCursor: false
+        showCursor: true,
+        cursorChar: '|',
+        fadeOut: true,
+        fadeOutClass: 'typed-fade-out',
+        fadeOutDelay: 500
     };
 
     const typed = new Typed('#typed-text', options);

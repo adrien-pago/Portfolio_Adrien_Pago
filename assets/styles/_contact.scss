@@ -2,8 +2,30 @@
 
 // Contact Header
 .contact-header {
-    text-align: center;
-    margin-bottom: $spacing-xl;
+    margin-bottom: 3rem;
+
+    .section-title {
+        position: relative;
+        display: inline-block;
+        
+        &:after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 50%;
+            height: 3px;
+            background: linear-gradient(135deg, $gradient-start, $gradient-end);
+            border-radius: 3px;
+        }
+    }
+
+    .lead {
+        color: $secondary;
+        max-width: 600px;
+        margin: 0 auto;
+    }
 }
 
 // Contact Content
@@ -165,5 +187,127 @@
 
     .map-section {
         margin-top: $spacing-lg;
+    }
+}
+
+.contact-form-container {
+    .card {
+        border-radius: 15px;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    }
+
+    .contact-info {
+        padding-bottom: 2rem;
+        border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+        margin-bottom: 2rem;
+
+        .info-item {
+            i {
+                font-size: 1.5rem;
+                color: $gradient-end;
+                display: block;
+            }
+
+            h5 {
+                font-size: 1.1rem;
+                margin: 0.5rem 0;
+                color: $dark;
+            }
+
+            p {
+                color: $secondary;
+                margin: 0;
+            }
+        }
+    }
+
+    .form-group {
+        margin-bottom: 1.5rem;
+
+        label {
+            font-weight: 500;
+            color: $dark;
+            margin-bottom: 0.5rem;
+        }
+
+        .form-control {
+            border: 1px solid #e0e0e0;
+            border-radius: 8px;
+            padding: 0.75rem;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+
+            &:focus {
+                border-color: $gradient-end;
+                box-shadow: 0 0 0 0.2rem rgba($gradient-end, 0.25);
+            }
+        }
+
+        textarea.form-control {
+            resize: vertical;
+        }
+    }
+
+    .btn-primary {
+        background: linear-gradient(135deg, $gradient-start, $gradient-end);
+        border: none;
+        padding: 0.75rem 2rem;
+        font-weight: 500;
+        letter-spacing: 1px;
+        border-radius: 8px;
+        transition: all 0.3s ease;
+
+        &:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba($gradient-end, 0.3);
+        }
+    }
+}
+
+.social-links {
+    a {
+        color: $dark;
+        font-size: 1.5rem;
+        transition: all 0.3s ease;
+        opacity: 0.7;
+
+        &:hover {
+            color: $gradient-end;
+            opacity: 1;
+            transform: translateY(-3px);
+        }
+    }
+}
+
+@media (max-width: 768px) {
+    .contact-header {
+        margin-bottom: 2rem;
+
+        .section-title {
+            font-size: 1.75rem;
+        }
+
+        .lead {
+            font-size: 1rem;
+            padding: 0 1rem;
+        }
+    }
+
+    .contact-form-container {
+        padding: 1rem;
+
+        .card {
+            border-radius: 12px;
+        }
+
+        .contact-info {
+            .info-item {
+                margin-bottom: 1.5rem;
+
+                &:last-child {
+                    margin-bottom: 0;
+                }
+            }
+        }
     }
 } 

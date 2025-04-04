@@ -29,19 +29,28 @@ class HomeController extends AbstractController
             ]
         ];
 
-        // Données temporaires pour la veille
-        $latestVeille = [
-            'id' => 1,
-            'title' => 'Les nouveautés de Symfony 6.4',
-            'description' => 'Découvrez les nouvelles fonctionnalités de Symfony 6.4, notamment les améliorations de performance, les nouveaux composants et les changements majeurs.',
-            'date' => new \DateTime('2024-04-01'),
-            'category' => 'Framework'
+        // Données temporaires pour les articles de veille
+        $latestArticles = [
+            [
+                'id' => 1,
+                'title' => 'Les nouveautés de Symfony 6.4',
+                'description' => 'Découvrez les nouvelles fonctionnalités de Symfony 6.4, notamment les améliorations de performance, les nouveaux composants et les changements majeurs.',
+                'date' => new \DateTime('2024-04-01'),
+                'category' => 'Framework'
+            ],
+            [
+                'id' => 2,
+                'title' => 'L\'avenir du développement web en 2024',
+                'description' => 'Explorez les tendances émergentes du développement web, de l\'IA aux nouvelles architectures front-end, en passant par les frameworks modernes.',
+                'date' => new \DateTime('2024-03-28'),
+                'category' => 'Tendances'
+            ]
         ];
 
         return $this->render('home/index.html.twig', [
             'page_title' => 'Accueil',
             'latestProjects' => $latestProjects,
-            'latestVeille' => $latestVeille
+            'latestArticles' => $latestArticles
         ]);
     }
 

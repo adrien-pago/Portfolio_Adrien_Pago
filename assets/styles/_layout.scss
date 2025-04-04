@@ -7,14 +7,14 @@ body {
     line-height: $line-height-base;
     background-color: $content-bg;
     color: $dark;
+    margin: 0;
+    padding: 0;
 }
 
 // Layout wrapper
 .wrapper {
-    display: flex;
-    width: 100%;
-    align-items: stretch;
     min-height: 100vh;
+    position: relative;
 }
 
 // Main content
@@ -35,6 +35,10 @@ body {
     max-width: 1200px;
     margin: 0 auto;
     padding: 0 $spacing-md;
+
+    @media (max-width: $breakpoint-md) {
+        padding: 0 $spacing-sm;
+    }
 }
 
 // Section styles
@@ -43,12 +47,20 @@ body {
     font-weight: 600;
     margin-bottom: $spacing-lg;
     color: $dark;
+
+    @media (max-width: $breakpoint-md) {
+        font-size: 1.75rem;
+    }
 }
 
 .lead {
     font-size: 1.25rem;
     font-weight: 300;
     margin-bottom: $spacing-lg;
+
+    @media (max-width: $breakpoint-md) {
+        font-size: 1.125rem;
+    }
 }
 
 // Card styles
@@ -66,6 +78,10 @@ body {
 
     .card-body {
         padding: $spacing-lg;
+
+        @media (max-width: $breakpoint-md) {
+            padding: $spacing-md;
+        }
     }
 
     .card-title {
@@ -92,23 +108,24 @@ body {
     }
 
     &-primary {
-        background-color: $primary;
-        border-color: $primary;
+        background: linear-gradient(135deg, $gradient-start, $gradient-end);
+        border: none;
         color: white;
 
         &:hover {
-            background-color: darken($primary, 10%);
-            border-color: darken($primary, 10%);
+            opacity: 0.9;
         }
     }
 
     &-outline-primary {
-        color: $primary;
-        border-color: $primary;
+        color: $gradient-start;
+        border: 2px solid $gradient-start;
+        background: transparent;
 
         &:hover {
-            background-color: $primary;
+            background: linear-gradient(135deg, $gradient-start, $gradient-end);
             color: white;
+            border-color: transparent;
         }
     }
 }
@@ -136,10 +153,6 @@ body {
 
 // Responsive utilities
 @media (max-width: $breakpoint-md) {
-    .container {
-        padding: 0 $spacing-sm;
-    }
-
     .section-title {
         font-size: 1.75rem;
     }

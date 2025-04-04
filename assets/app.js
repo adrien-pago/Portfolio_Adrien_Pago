@@ -1,4 +1,5 @@
 // Import all JavaScript files
+import './js/home';
 import './js/sidebar';
 import './js/projects';
 import './js/veille';
