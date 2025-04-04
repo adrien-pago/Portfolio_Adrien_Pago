@@ -1,0 +1,207 @@
+// Import Bootstrap
+@import '~bootstrap/scss/bootstrap';
+
+// Import Font Awesome
+@import '~@fortawesome/fontawesome-free/scss/fontawesome';
+@import '~@fortawesome/fontawesome-free/scss/solid';
+@import '~@fortawesome/fontawesome-free/scss/brands';
+
+// Import custom styles
+@import 'variables';
+@import 'layout';
+@import 'sidebar';
+@import 'home';
+@import 'profile';
+@import 'projects';
+@import 'veille';
+@import 'contact';
+
+// Variables
+$primary: #0d6efd;
+$secondary: #6c757d;
+$success: #198754;
+$info: #0dcaf0;
+$warning: #ffc107;
+$danger: #dc3545;
+$light: #f8f9fa;
+$dark: #212529;
+$sidebar-bg: #2c3e50;
+$sidebar-color: #ecf0f1;
+$sidebar-active-color: #3498db;
+$content-bg: #f8f9fa;
+
+// Layout
+.wrapper {
+    display: flex;
+    width: 100%;
+    align-items: stretch;
+    min-height: 100vh;
+}
+
+// Sidebar
+.sidebar {
+    min-width: 250px;
+    max-width: 250px;
+    background: $sidebar-bg;
+    color: $sidebar-color;
+    transition: all 0.3s;
+    position: fixed;
+    height: 100vh;
+    z-index: 999;
+
+    &.active {
+        margin-left: -250px;
+    }
+
+    .sidebar-header {
+        padding: 20px;
+        background: rgba(0, 0, 0, 0.1);
+        text-align: center;
+
+        .profile-img {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            margin-bottom: 15px;
+            border: 3px solid rgba(255, 255, 255, 0.2);
+        }
+
+        h3 {
+            margin: 0;
+            font-size: 1.5rem;
+            font-weight: 600;
+        }
+    }
+
+    ul.components {
+        padding: 20px 0;
+        
+        li {
+            padding: 0 20px;
+            margin-bottom: 10px;
+
+            a {
+                padding: 10px 15px;
+                display: block;
+                color: $sidebar-color;
+                text-decoration: none;
+                transition: all 0.3s;
+                border-radius: 5px;
+
+                &:hover {
+                    background: rgba(255, 255, 255, 0.1);
+                }
+
+                &.active {
+                    background: $sidebar-active-color;
+                }
+
+                i {
+                    margin-right: 10px;
+                }
+            }
+        }
+    }
+
+    .sidebar-footer {
+        position: absolute;
+        bottom: 0;
+        width: 100%;
+        padding: 20px;
+        text-align: center;
+        background: rgba(0, 0, 0, 0.1);
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+
+            .social-link {
+                color: $sidebar-color;
+                font-size: 1.2rem;
+                transition: all 0.3s;
+
+                &:hover {
+                    color: $sidebar-active-color;
+                }
+            }
+        }
+    }
+}
+
+// Content
+#content {
+    width: 100%;
+    padding: 20px;
+    min-height: 100vh;
+    transition: all 0.3s;
+    margin-left: 250px;
+    background: $content-bg;
+
+    #sidebarCollapse {
+        margin-bottom: 20px;
+    }
+}
+
+// Responsive
+@media (max-width: 768px) {
+    .sidebar {
+        margin-left: -250px;
+        
+        &.active {
+            margin-left: 0;
+        }
+    }
+    
+    #content {
+        margin-left: 0;
+    }
+}
+
+// Custom styles for content sections
+.section-title {
+    margin-bottom: 2rem;
+    padding-bottom: 1rem;
+    border-bottom: 2px solid $sidebar-active-color;
+}
+
+.card {
+    border: none;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s;
+
+    &:hover {
+        transform: translateY(-5px);
+    }
+}
+
+// Custom styles
+body {
+    font-family: 'Poppins', sans-serif;
+    background-color: $light;
+}
+
+// Main content styles
+main {
+    padding-top: 1.5rem;
+}
+
+// Typed text styles
+.typed-text-output {
+    font-size: 1.75rem;
+    margin-bottom: 2rem;
+    color: $primary;
+}
+
+// Responsive adjustments
+@media (max-width: 767.98px) {
+    .sidebar {
+        position: static;
+        height: auto;
+        padding-top: 0;
+    }
+    
+    main {
+        margin-left: 0 !important;
+    }
+} 

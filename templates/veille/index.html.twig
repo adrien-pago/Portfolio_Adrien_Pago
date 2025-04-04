@@ -1,0 +1,85 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Veille Technologique - Portfolio{% endblock %}
+
+{% block body %}
+    <div class="veille-header">
+        <h1 class="section-title">Veille Technologique</h1>
+        <p class="lead">Restez informé des dernières tendances et innovations dans le développement web.</p>
+    </div>
+
+    <div class="categories mb-4">
+        <button class="btn btn-outline-primary category-btn active" data-category="all">Tout</button>
+        <button class="btn btn-outline-primary category-btn" data-category="frontend">Frontend</button>
+        <button class="btn btn-outline-primary category-btn" data-category="backend">Backend</button>
+        <button class="btn btn-outline-primary category-btn" data-category="mobile">Mobile</button>
+        <button class="btn btn-outline-primary category-btn" data-category="devops">DevOps</button>
+    </div>
+
+    <div class="articles-grid">
+        <div class="article-item" data-category="frontend">
+            <div class="card">
+                <div class="card-body">
+                    <span class="category-badge">Frontend</span>
+                    <h5 class="card-title">Les tendances CSS en 2024</h5>
+                    <p class="card-text">Découvrez les dernières tendances en matière de CSS, des nouvelles propriétés aux frameworks populaires.</p>
+                    <div class="article-meta">
+                        <span class="date">15 Mars 2024</span>
+                        <div class="sources">
+                            <a href="#" target="_blank">MDN</a>
+                            <a href="#" target="_blank">CSS-Tricks</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="article-item" data-category="backend">
+            <div class="card">
+                <div class="card-body">
+                    <span class="category-badge">Backend</span>
+                    <h5 class="card-title">Symfony 7 : Les nouvelles fonctionnalités</h5>
+                    <p class="card-text">Un aperçu complet des nouvelles fonctionnalités et améliorations de Symfony 7.</p>
+                    <div class="article-meta">
+                        <span class="date">10 Mars 2024</span>
+                        <div class="sources">
+                            <a href="#" target="_blank">Symfony Blog</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="article-item" data-category="mobile">
+            <div class="card">
+                <div class="card-body">
+                    <span class="category-badge">Mobile</span>
+                    <h5 class="card-title">Le développement cross-platform en 2024</h5>
+                    <p class="card-text">Comparaison des différentes solutions de développement cross-platform pour mobile.</p>
+                    <div class="article-meta">
+                        <span class="date">5 Mars 2024</span>
+                        <div class="sources">
+                            <a href="#" target="_blank">Medium</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="article-item" data-category="devops">
+            <div class="card">
+                <div class="card-body">
+                    <span class="category-badge">DevOps</span>
+                    <h5 class="card-title">CI/CD avec GitHub Actions</h5>
+                    <p class="card-text">Guide pratique pour mettre en place un pipeline CI/CD efficace avec GitHub Actions.</p>
+                    <div class="article-meta">
+                        <span class="date">1 Mars 2024</span>
+                        <div class="sources">
+                            <a href="#" target="_blank">GitHub Docs</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %} 

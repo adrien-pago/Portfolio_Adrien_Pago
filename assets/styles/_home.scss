@@ -1,0 +1,126 @@
+@import 'variables';
+
+// Hero Section
+.hero-section {
+    padding: $spacing-xl 0;
+    background: linear-gradient(135deg, $primary 0%, darken($primary, 20%) 100%);
+    color: white;
+    margin-bottom: $spacing-xl;
+
+    h1 {
+        font-size: 3rem;
+        font-weight: 700;
+        margin-bottom: $spacing-lg;
+    }
+
+    .lead {
+        font-size: 1.5rem;
+        margin-bottom: $spacing-xl;
+        opacity: 0.9;
+    }
+
+    .hero-buttons {
+        .btn {
+            padding: $spacing-md $spacing-xl;
+            font-size: 1.125rem;
+        }
+    }
+}
+
+// Skills Section
+.skills-section {
+    .card {
+        text-align: center;
+        padding: $spacing-lg;
+
+        i {
+            font-size: 3rem;
+            color: $primary;
+            margin-bottom: $spacing-md;
+        }
+
+        .card-title {
+            font-size: 1.5rem;
+            margin-bottom: $spacing-md;
+        }
+
+        .card-text {
+            color: $secondary;
+            font-size: 1.125rem;
+        }
+    }
+}
+
+// Latest Projects Section
+.projects-section {
+    background-color: $light;
+
+    .card {
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+
+        .card-body {
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .btn {
+            align-self: flex-start;
+        }
+    }
+}
+
+// Latest Veille Section
+.veille-section {
+    .card {
+        .card-title {
+            font-size: 1.5rem;
+            margin-bottom: $spacing-md;
+        }
+
+        .card-text {
+            margin-bottom: $spacing-lg;
+        }
+
+        .d-flex {
+            align-items: center;
+        }
+    }
+}
+
+// Responsive adjustments
+@media (max-width: $breakpoint-md) {
+    .hero-section {
+        padding: $spacing-lg 0;
+        text-align: center;
+
+        h1 {
+            font-size: 2.5rem;
+        }
+
+        .lead {
+            font-size: 1.25rem;
+        }
+
+        .hero-buttons {
+            display: flex;
+            flex-direction: column;
+            gap: $spacing-md;
+            align-items: center;
+
+            .btn {
+                width: 100%;
+                max-width: 300px;
+            }
+        }
+    }
+
+    .skills-section {
+        .card {
+            margin-bottom: $spacing-md;
+        }
+    }
+} 

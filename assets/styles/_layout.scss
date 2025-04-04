@@ -1,0 +1,150 @@
+@import 'variables';
+
+// Base styles
+body {
+    font-family: $font-family-base;
+    font-size: $font-size-base;
+    line-height: $line-height-base;
+    background-color: $content-bg;
+    color: $dark;
+}
+
+// Layout wrapper
+.wrapper {
+    display: flex;
+    width: 100%;
+    align-items: stretch;
+    min-height: 100vh;
+}
+
+// Main content
+#content {
+    width: 100%;
+    padding: $content-padding;
+    min-height: 100vh;
+    transition: $transition-base;
+    margin-left: $sidebar-width;
+
+    @media (max-width: $breakpoint-md) {
+        margin-left: 0;
+    }
+}
+
+// Container
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 $spacing-md;
+}
+
+// Section styles
+.section-title {
+    font-size: 2rem;
+    font-weight: 600;
+    margin-bottom: $spacing-lg;
+    color: $dark;
+}
+
+.lead {
+    font-size: 1.25rem;
+    font-weight: 300;
+    margin-bottom: $spacing-lg;
+}
+
+// Card styles
+.card {
+    background: white;
+    border-radius: $border-radius;
+    box-shadow: $shadow-sm;
+    transition: $transition-base;
+    border: none;
+
+    &:hover {
+        box-shadow: $shadow-md;
+        transform: translateY(-2px);
+    }
+
+    .card-body {
+        padding: $spacing-lg;
+    }
+
+    .card-title {
+        font-size: 1.25rem;
+        font-weight: 600;
+        margin-bottom: $spacing-md;
+    }
+
+    .card-text {
+        color: $secondary;
+        margin-bottom: $spacing-md;
+    }
+}
+
+// Button styles
+.btn {
+    padding: $spacing-sm $spacing-lg;
+    border-radius: $border-radius;
+    font-weight: 500;
+    transition: $transition-base;
+
+    &:hover {
+        transform: translateY(-1px);
+    }
+
+    &-primary {
+        background-color: $primary;
+        border-color: $primary;
+        color: white;
+
+        &:hover {
+            background-color: darken($primary, 10%);
+            border-color: darken($primary, 10%);
+        }
+    }
+
+    &-outline-primary {
+        color: $primary;
+        border-color: $primary;
+
+        &:hover {
+            background-color: $primary;
+            color: white;
+        }
+    }
+}
+
+// Badge styles
+.badge {
+    padding: $spacing-xs $spacing-sm;
+    border-radius: $border-radius;
+    font-weight: 500;
+    font-size: 0.875rem;
+}
+
+// Progress bar styles
+.progress {
+    height: 0.5rem;
+    background-color: $light;
+    border-radius: $border-radius;
+    overflow: hidden;
+
+    .progress-bar {
+        background-color: $primary;
+        transition: width 0.6s ease;
+    }
+}
+
+// Responsive utilities
+@media (max-width: $breakpoint-md) {
+    .container {
+        padding: 0 $spacing-sm;
+    }
+
+    .section-title {
+        font-size: 1.75rem;
+    }
+
+    .lead {
+        font-size: 1.125rem;
+    }
+} 

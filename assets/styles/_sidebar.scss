@@ -1,0 +1,124 @@
+@import 'variables';
+
+.sidebar {
+    min-width: $sidebar-width;
+    max-width: $sidebar-width;
+    background: $sidebar-bg;
+    color: $sidebar-color;
+    transition: $transition-base;
+    position: fixed;
+    height: 100vh;
+    z-index: 999;
+
+    &.active {
+        margin-left: -$sidebar-width;
+    }
+
+    .sidebar-header {
+        padding: $spacing-lg;
+        background: rgba(0, 0, 0, 0.1);
+        text-align: center;
+
+        .profile-img {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            margin-bottom: $spacing-md;
+            border: 3px solid rgba(255, 255, 255, 0.2);
+        }
+
+        h3 {
+            margin: 0;
+            font-size: 1.5rem;
+            font-weight: 600;
+        }
+    }
+
+    ul.components {
+        padding: $spacing-lg 0;
+        
+        li {
+            padding: 0 $spacing-lg;
+            margin-bottom: $spacing-sm;
+
+            a {
+                padding: $spacing-sm $spacing-md;
+                display: block;
+                color: $sidebar-color;
+                text-decoration: none;
+                transition: $transition-base;
+                border-radius: $border-radius;
+
+                &:hover {
+                    background: rgba(255, 255, 255, 0.1);
+                }
+
+                &.active {
+                    background: $sidebar-active-color;
+                }
+
+                i {
+                    margin-right: $spacing-sm;
+                }
+            }
+        }
+    }
+
+    .sidebar-footer {
+        position: absolute;
+        bottom: 0;
+        width: 100%;
+        padding: $spacing-md;
+        background: rgba(0, 0, 0, 0.1);
+        text-align: center;
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: $spacing-md;
+
+            .social-link {
+                color: $sidebar-color;
+                font-size: 1.25rem;
+                transition: $transition-base;
+
+                &:hover {
+                    color: $sidebar-active-color;
+                }
+            }
+        }
+    }
+}
+
+#sidebarCollapse {
+    position: fixed;
+    top: $spacing-md;
+    left: $spacing-md;
+    z-index: 1000;
+    background: $sidebar-bg;
+    border: none;
+    color: $sidebar-color;
+    padding: $spacing-sm $spacing-md;
+    border-radius: $border-radius;
+    transition: $transition-base;
+
+    &:hover {
+        background: darken($sidebar-bg, 5%);
+    }
+
+    @media (min-width: $breakpoint-md) {
+        display: none;
+    }
+}
+
+@media (max-width: $breakpoint-md) {
+    .sidebar {
+        position: static;
+        height: auto;
+        padding-top: 0;
+    }
+    
+    #content {
+        margin-left: 0 !important;
+    }
+} 

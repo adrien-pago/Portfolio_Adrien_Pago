@@ -1,0 +1,108 @@
+@import 'variables';
+
+// Profile Header
+.profile-header {
+    .profile-img {
+        max-width: 200px;
+        border-radius: 50%;
+        border: 4px solid $primary;
+        box-shadow: $shadow-lg;
+    }
+
+    .social-links {
+        a {
+            color: $primary;
+            font-size: 1.5rem;
+            margin: 0 $spacing-sm;
+            transition: $transition-base;
+
+            &:hover {
+                color: darken($primary, 10%);
+                transform: translateY(-2px);
+            }
+        }
+    }
+
+    .section-title {
+        margin-bottom: $spacing-lg;
+    }
+
+    .lead {
+        margin-bottom: $spacing-xl;
+    }
+}
+
+// Skills Section
+.skills-section {
+    background-color: $light;
+
+    .skill-item {
+        margin-bottom: $spacing-md;
+
+        .d-flex {
+            margin-bottom: $spacing-xs;
+        }
+
+        .progress {
+            height: 0.75rem;
+            background-color: rgba($primary, 0.1);
+
+            .progress-bar {
+                background-color: $primary;
+            }
+        }
+    }
+}
+
+// Certifications Section
+.certifications-section {
+    .card {
+        text-align: center;
+        transition: $transition-base;
+
+        &:hover {
+            transform: translateY(-5px);
+        }
+
+        i {
+            color: $primary;
+            margin-bottom: $spacing-md;
+        }
+
+        .card-title {
+            font-size: 1.25rem;
+            margin-bottom: $spacing-sm;
+        }
+
+        .card-text {
+            color: $secondary;
+            margin-bottom: $spacing-sm;
+        }
+
+        small {
+            color: $primary;
+            font-weight: 500;
+        }
+    }
+}
+
+// Responsive adjustments
+@media (max-width: $breakpoint-md) {
+    .profile-header {
+        text-align: center;
+
+        .profile-img {
+            margin: 0 auto $spacing-lg;
+        }
+
+        .social-links {
+            margin-bottom: $spacing-lg;
+        }
+    }
+
+    .skills-section {
+        .card {
+            margin-bottom: $spacing-lg;
+        }
+    }
+} 

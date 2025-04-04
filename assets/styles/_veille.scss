@@ -1,0 +1,170 @@
+@import 'variables';
+
+// Veille Header
+.veille-header {
+    text-align: center;
+    margin-bottom: $spacing-xl;
+}
+
+// Categories
+.categories {
+    .btn {
+        margin: 0 $spacing-sm;
+        transition: $transition-base;
+
+        &.active {
+            background-color: $primary;
+            color: white;
+        }
+
+        &:hover {
+            transform: translateY(-2px);
+        }
+    }
+}
+
+// Articles Grid
+.articles-grid {
+    .article-item {
+        margin-bottom: $spacing-lg;
+        opacity: 1;
+        transition: $transition-base;
+
+        &.hidden {
+            display: none;
+        }
+
+        .card {
+            height: 100%;
+            overflow: hidden;
+
+            .card-body {
+                display: flex;
+                flex-direction: column;
+                justify-content: space-between;
+            }
+
+            .category-badge {
+                position: absolute;
+                top: $spacing-md;
+                right: $spacing-md;
+                background-color: rgba($primary, 0.1);
+                color: $primary;
+                padding: $spacing-xs $spacing-sm;
+                border-radius: $border-radius;
+                font-size: 0.875rem;
+                font-weight: 500;
+            }
+
+            .card-title {
+                font-size: 1.25rem;
+                margin-bottom: $spacing-md;
+                padding-right: $spacing-xl;
+            }
+
+            .card-text {
+                color: $secondary;
+                margin-bottom: $spacing-lg;
+                flex-grow: 1;
+            }
+
+            .article-meta {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                padding-top: $spacing-md;
+                border-top: 1px solid rgba($secondary, 0.1);
+
+                .date {
+                    color: $secondary;
+                    font-size: 0.875rem;
+                }
+
+                .sources {
+                    display: flex;
+                    gap: $spacing-sm;
+
+                    a {
+                        color: $primary;
+                        text-decoration: none;
+                        font-size: 0.875rem;
+                        transition: $transition-base;
+
+                        &:hover {
+                            color: darken($primary, 10%);
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+// Article Details Modal
+.article-modal {
+    .modal-content {
+        border-radius: $border-radius-lg;
+        border: none;
+
+        .modal-header {
+            border-bottom: none;
+            padding: $spacing-lg;
+
+            .modal-title {
+                font-size: 1.5rem;
+                font-weight: 600;
+            }
+
+            .btn-close {
+                font-size: 1.5rem;
+                opacity: 0.5;
+                transition: $transition-base;
+
+                &:hover {
+                    opacity: 1;
+                }
+            }
+        }
+
+        .modal-body {
+            padding: $spacing-lg;
+
+            .article-content {
+                margin-bottom: $spacing-lg;
+            }
+
+            .article-meta {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                padding-top: $spacing-md;
+                border-top: 1px solid rgba($secondary, 0.1);
+            }
+        }
+    }
+}
+
+// Responsive adjustments
+@media (max-width: $breakpoint-md) {
+    .categories {
+        .btn {
+            margin: $spacing-xs;
+        }
+    }
+
+    .articles-grid {
+        .article-item {
+            .card {
+                .category-badge {
+                    top: $spacing-sm;
+                    right: $spacing-sm;
+                }
+
+                .card-title {
+                    font-size: 1.125rem;
+                    padding-right: $spacing-lg;
+                }
+            }
+        }
+    }
+} 
