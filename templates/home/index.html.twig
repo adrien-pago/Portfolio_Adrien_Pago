@@ -1,101 +1,85 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Accueil - Portfolio{% endblock %}
+{% block title %}Portfolio - Adrien Pago{% endblock %}
 
 {% block body %}
     <!-- Hero Section -->
-    <section class="hero-section text-center py-5">
-        <div class="container">
-            <h1 class="display-4 mb-4">Bienvenue sur mon Portfolio</h1>
-            <p class="lead mb-4">Développeur Web Full Stack passionné par la création d'applications web modernes</p>
-            <div class="hero-buttons">
-                <a href="{{ path('app_profile') }}" class="btn btn-primary btn-lg me-3">En savoir plus</a>
-                <a href="{{ path('app_contact') }}" class="btn btn-outline-primary btn-lg">Me contacter</a>
+    <section class="hero-section">
+        <div class="hero-content">
+            <h1 class="main-title">Portfolio</h1>
+            <div class="typing-container">
+                <span id="typed-text"></span>
+                <span class="cursor">|</span>
             </div>
+            <a href="{{ asset('cv/CV_Adrien_Pago.pdf') }}" class="download-btn" download>
+                <i class="fas fa-download"></i>
+                Télécharger mon CV
+            </a>
         </div>
-    </section>
-
-    <!-- Skills Section -->
-    <section class="skills-section py-5">
-        <div class="container">
-            <h2 class="section-title text-center">Compétences</h2>
-            <div class="row g-4">
-                <div class="col-md-4">
-                    <div class="card h-100">
-                        <div class="card-body text-center">
-                            <i class="fas fa-code fa-3x mb-3 text-primary"></i>
-                            <h3 class="card-title">Frontend</h3>
-                            <p class="card-text">HTML5, CSS3, JavaScript, React, Vue.js</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="card h-100">
-                        <div class="card-body text-center">
-                            <i class="fas fa-server fa-3x mb-3 text-primary"></i>
-                            <h3 class="card-title">Backend</h3>
-                            <p class="card-text">PHP, Symfony, Node.js, Python</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="card h-100">
-                        <div class="card-body text-center">
-                            <i class="fas fa-database fa-3x mb-3 text-primary"></i>
-                            <h3 class="card-title">Base de données</h3>
-                            <p class="card-text">MySQL, PostgreSQL, MongoDB</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
+        <div class="hero-background">
+            <div class="shape shape1"></div>
+            <div class="shape shape2"></div>
+            <div class="shape shape3"></div>
         </div>
     </section>
 
     <!-- Latest Projects Section -->
-    <section class="projects-section py-5 bg-light">
-        <div class="container">
-            <h2 class="section-title text-center">Derniers Projets</h2>
-            <div class="row g-4">
-                <div class="col-md-6">
-                    <div class="card h-100">
-                        <div class="card-body">
-                            <h3 class="card-title">Projet 1</h3>
-                            <p class="card-text">Description du projet 1 avec les technologies utilisées et les fonctionnalités principales.</p>
-                            <a href="#" class="btn btn-outline-primary">Voir le projet</a>
+    <section class="latest-projects">
+        <div class="section-header">
+            <h2>Derniers Projets</h2>
+            <a href="{{ path('app_projects') }}" class="view-all">Voir tous les projets</a>
+        </div>
+        <div class="projects-grid">
+            {% for project in latestProjects %}
+                <div class="project-card" data-project-id="{{ project.id }}">
+                    <div class="project-image">
+                        <img src="{{ asset('uploads/projects/' ~ project.image) }}" alt="{{ project.title }}">
+                    </div>
+                    <div class="project-content">
+                        <h3>{{ project.title }}</h3>
+                        <p>{{ project.description|slice(0, 100) }}...</p>
+                        <div class="project-tags">
+                            {% for tag in project.tags %}
+                                <span class="tag">{{ tag }}</span>
+                            {% endfor %}
                         </div>
+                        <a href="{{ path('app_project_show', {'id': project.id}) }}" class="project-link">
+                            Voir le projet
+                            <i class="fas fa-arrow-right"></i>
+                        </a>
                     </div>
                 </div>
-                <div class="col-md-6">
-                    <div class="card h-100">
-                        <div class="card-body">
-                            <h3 class="card-title">Projet 2</h3>
-                            <p class="card-text">Description du projet 2 avec les technologies utilisées et les fonctionnalités principales.</p>
-                            <a href="#" class="btn btn-outline-primary">Voir le projet</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
+            {% endfor %}
         </div>
     </section>
 
     <!-- Latest Veille Section -->
-    <section class="veille-section py-5">
-        <div class="container">
-            <h2 class="section-title text-center">Dernière Veille Technologique</h2>
-            <div class="row">
-                <div class="col-md-8 mx-auto">
-                    <div class="card">
-                        <div class="card-body">
-                            <h3 class="card-title">Titre de l'article</h3>
-                            <p class="card-text">Résumé de l'article de veille technologique avec les points clés et les sources.</p>
-                            <div class="d-flex justify-content-between align-items-center">
-                                <small class="text-muted">Publié le 01/01/2024</small>
-                                <a href="#" class="btn btn-outline-primary">Lire plus</a>
-                            </div>
-                        </div>
+    <section class="latest-veille">
+        <div class="section-header">
+            <h2>Dernière Veille Technologique</h2>
+            <a href="{{ path('app_veille') }}" class="view-all">Voir toute la veille</a>
+        </div>
+        {% if latestVeille %}
+            <div class="veille-card">
+                <div class="veille-content">
+                    <h3>{{ latestVeille.title }}</h3>
+                    <p>{{ latestVeille.description|slice(0, 200) }}...</p>
+                    <div class="veille-meta">
+                        <span class="date">
+                            <i class="far fa-calendar"></i>
+                            {{ latestVeille.date|date('d/m/Y') }}
+                        </span>
+                        <span class="category">
+                            <i class="fas fa-tag"></i>
+                            {{ latestVeille.category }}
+                        </span>
                     </div>
+                    <a href="{{ path('app_veille_show', {'id': latestVeille.id}) }}" class="veille-link">
+                        Lire la suite
+                        <i class="fas fa-arrow-right"></i>
+                    </a>
                 </div>
             </div>
-        </div>
+        {% endif %}
     </section>
 {% endblock %} 

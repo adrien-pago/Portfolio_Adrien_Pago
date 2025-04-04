@@ -1,0 +1,50 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ veille.title }} - Portfolio{% endblock %}
+
+{% block body %}
+<div class="veille-details">
+    <div class="veille-header">
+        <h1>{{ veille.title }}</h1>
+        <div class="veille-meta">
+            <span class="date">
+                <i class="far fa-calendar"></i>
+                {{ veille.date|date('d/m/Y') }}
+            </span>
+            <span class="category">
+                <i class="fas fa-tag"></i>
+                {{ veille.category }}
+            </span>
+        </div>
+    </div>
+
+    <div class="veille-content">
+        <div class="veille-description">
+            {{ veille.description|raw }}
+        </div>
+
+        {% if veille.sources|length > 0 %}
+            <div class="veille-sources">
+                <h2>Sources</h2>
+                <ul>
+                    {% for source in veille.sources %}
+                        <li>
+                            <a href="{{ source }}" target="_blank">
+                                {{ source }}
+                                <i class="fas fa-external-link-alt"></i>
+                            </a>
+                        </li>
+                    {% endfor %}
+                </ul>
+            </div>
+        {% endif %}
+    </div>
+
+    <div class="back-link">
+        <a href="{{ path('app_veille') }}">
+            <i class="fas fa-arrow-left"></i>
+            Retour à la veille technologique
+        </a>
+    </div>
+</div>
+{% endblock %} 
