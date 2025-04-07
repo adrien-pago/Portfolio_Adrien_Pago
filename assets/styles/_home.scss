@@ -128,7 +128,7 @@ body {
                     height: $height;
                     top: random(80) * 1%;
                     left: -$width;
-                    animation-duration: (random(15) + 15) * 1s;
+                    animation-duration: (random(5) + 10) * 1s;
                     opacity: 0.9;
 
                     &::before {
