@@ -12,7 +12,7 @@ $primary-color: white;
     display: none;
     @extend .transition-fast;
 
-            @include mobile {
+    @include mobile {
         display: flex;
         position: fixed;
         top: 0;
@@ -29,6 +29,15 @@ $primary-color: white;
         justify-content: space-between;
         align-items: center;
         transform: translate3d(0, 0, 0);
+        
+        // S'assurer que le header reste bien positionné sur toutes les pages
+        position: fixed !important;
+        left: 0 !important;
+        right: 0 !important;
+        width: 100vw !important;
+        margin: 0 !important;
+        padding-left: 1rem !important;
+        padding-right: 1rem !important;
         
         // Animation de cachage/révélation au scroll
         &.header-hidden {

@@ -1,35 +1,46 @@
 // Contact form functionality
 document.addEventListener('DOMContentLoaded', function() {
     const contactForm = document.getElementById('contactForm');
-
     if (contactForm) {
         contactForm.addEventListener('submit', function(e) {
             e.preventDefault();
-
-            // Get form data
             const formData = new FormData(this);
-            const data = Object.fromEntries(formData.entries());
+            const submitBtn = this.querySelector('button[type="submit"]');
+            if (submitBtn) submitBtn.disabled = true;
 
-            // Here you would typically send the data to your backend
-            // For now, we'll just show a success message
-            showSuccessMessage();
+            fetch(this.action, {
+                method: 'POST',
+                body: formData,
+                headers: {
+                    'X-Requested-With': 'XMLHttpRequest'
+                }
+            })
+            .then(response => response.json())
+            .then(data => {
+                showContactMessage(data.message, data.success ? 'success' : 'danger');
+                if (data.success) {
+                    contactForm.reset();
+                }
+            })
+            .catch(() => {
+                showContactMessage('Erreur lors de l\'envoi du message.', 'danger');
+            })
+            .finally(() => {
+                if (submitBtn) submitBtn.disabled = false;
+            });
         });
     }
 });
 
-// Show success message
-function showSuccessMessage() {
-    const message = document.createElement('div');
-    message.className = 'success-message';
-    message.textContent = 'Message envoyé avec succès !';
-    document.body.appendChild(message);
-
-    // Show the message
-    setTimeout(() => message.classList.add('show'), 100);
-
-    // Remove the message after 3 seconds
+function showContactMessage(message, type) {
+    let alert = document.createElement('div');
+    alert.className = `alert alert-${type} text-center`;
+    alert.textContent = message;
+    const form = document.getElementById('contactForm');
+    if (form) {
+        form.parentNode.insertBefore(alert, form);
+    }
     setTimeout(() => {
-        message.classList.remove('show');
-        setTimeout(() => message.remove(), 300);
-    }, 3000);
+        alert.remove();
+    }, 4000);
 } 

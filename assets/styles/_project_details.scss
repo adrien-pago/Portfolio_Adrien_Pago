@@ -383,6 +383,7 @@
 @media (max-width: 768px) {
     .project-details {
         margin: 2rem auto;
+        padding: 0 0.1rem;
 
         .project-header {
             h1 {
@@ -396,6 +397,9 @@
         }
 
         .project-content {
+            margin: 0 0 2rem 0;
+            border-radius: 12px;
+
             .project-gallery {
                 .carousel .carousel-inner .carousel-item img,
                 .project-image-fallback img {
@@ -403,8 +407,23 @@
                 }
             }
 
+            .project-description {
+                padding: 1.5rem 1rem;
+
+                h2 {
+                    font-size: 1.5rem;
+                    margin-bottom: 1rem;
+                }
+
+                p {
+                    font-size: 1rem;
+                    line-height: 1.6;
+                }
+            }
+
             .project-links {
                 flex-direction: column;
+                padding: 0 1rem 1.5rem;
 
                 .btn {
                     width: 100%;

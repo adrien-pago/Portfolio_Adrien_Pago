@@ -34,15 +34,29 @@
             display: none;
         }
 
+        // Style spécifique pour la page d'accueil sur mobile
+        @media (max-width: 768px) {
+            margin-bottom: 1rem;
+        }
+
         .card {
             height: 100%;
             overflow: hidden;
+
+            @media (max-width: 768px) {
+                border-radius: 12px; // Réduit le border-radius sur mobile
+                box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1); // Ombre plus subtile
+            }
 
             .card-body {
                 display: flex;
                 flex-direction: column;
                 justify-content: space-between;
                 position: relative;
+
+                @media (max-width: 768px) {
+                    padding: 1rem 0.75rem; // Réduit le padding horizontal
+                }
             }
 
             .category-badge {
@@ -63,6 +77,14 @@
                 display: flex;
                 align-items: center;
                 gap: 4px;
+
+                @media (max-width: 768px) {
+                    margin-top: 1%; // Descend le badge pour éviter qu'il soit coupé
+                    right: $spacing-sm;
+                    font-size: 0.8rem;
+                    padding: 0.2rem 0.5rem;
+                    border-radius: 12px;
+                }
             }
 
             .card-title {
@@ -78,6 +100,7 @@
                     padding-right: 100px; // Plus d'espace pour le badge
                     font-size: 1.1rem;
                     line-height: 1.4;
+                    margin-bottom: 0.75rem;
                 }
             }
 
@@ -85,6 +108,12 @@
                 color: $secondary;
                 margin-bottom: $spacing-lg;
                 flex-grow: 1;
+
+                @media (max-width: 768px) {
+                    margin-bottom: 1rem;
+                    font-size: 0.9rem;
+                    line-height: 1.5;
+                }
             }
 
             .article-meta {
@@ -94,9 +123,17 @@
                 padding-top: $spacing-md;
                 border-top: 1px solid rgba($secondary, 0.1);
 
+                @media (max-width: 768px) {
+                    padding-top: 0.75rem;
+                }
+
                 .date {
                     color: $secondary;
                     font-size: 0.875rem;
+
+                    @media (max-width: 768px) {
+                        font-size: 0.8rem;
+                    }
                 }
 
                 .sources {
@@ -108,6 +145,11 @@
                         font-size: 0.8rem;
                         color: $secondary;
                         margin-right: $spacing-sm;
+
+                        @media (max-width: 768px) {
+                            font-size: 0.75rem;
+                            margin-right: 0.5rem;
+                        }
                     }
 
                     a {
@@ -115,6 +157,10 @@
                         text-decoration: none;
                         font-size: 0.875rem;
                         transition: $transition-base;
+
+                        @media (max-width: 768px) {
+                            font-size: 0.8rem;
+                        }
 
                         &:hover {
                             color: darken($primary, 10%);
@@ -339,7 +385,7 @@
                     font-size: 0.7rem;
                     padding: 0.3rem 0.6rem;
                     right: 0.5rem;
-                    top: -0.3rem;
+                    top: 0.5rem; // Descend le badge pour éviter qu'il soit coupé
                 }
 
                 i {

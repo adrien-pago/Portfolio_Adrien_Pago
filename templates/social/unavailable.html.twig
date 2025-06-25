@@ -187,28 +187,49 @@
         }
 
         @media (max-width: 768px) {
+            .social-unavailable-page {
+                padding: 1rem 0;
+            }
+
             .unavailable-content {
-                margin: 0 1rem;
-                padding: 2rem 1.5rem;
+                margin: 0 0.25rem;
+                padding: 1.5rem 1rem;
+                border-radius: 12px;
+                max-width: 100%;
             }
 
             .unavailable-content h1 {
                 font-size: 2rem;
             }
 
+            .available-links {
+                margin: 2rem 0;
+                padding: 1.5rem 1rem;
+                border-radius: 10px;
+            }
+
             .available-social-links {
                 flex-direction: column;
                 align-items: center;
+                gap: 1rem;
+            }
+
+            .available-social-links .social-link {
+                width: 100%;
+                justify-content: center;
+                padding: 0.8rem 1rem;
             }
 
             .action-buttons {
                 flex-direction: column;
                 align-items: center;
+                gap: 0.75rem;
             }
 
             .btn {
-                width: 200px;
+                width: 100%;
                 justify-content: center;
+                padding: 0.8rem 1.5rem;
             }
         }
     </style>

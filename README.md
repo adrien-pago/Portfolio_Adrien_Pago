@@ -117,6 +117,26 @@ npm run build
 
 # Optimiser l'autoloader Composer
 composer dump-autoload --optimize
+
+```
+### Base de donnée
+```bash
+# Création de la base de données
+php bin/console doctrine:database:create
+
+# Exécution des migrations existantes
+php bin/console doctrine:migrations:migrate
+
+# Vérification du statut des migrations
+php bin/console doctrine:migrations:status
+
+# Si vous voulez créer une nouvelle migration
+php bin/console make:migration
+
+#Vider et recréer la base de données
+php bin/console doctrine:database:drop --force
+php bin/console doctrine:database:create
+php bin/console doctrine:migrations:migrate
 ```
 
 ## 📱 **Spécificités Mobile**

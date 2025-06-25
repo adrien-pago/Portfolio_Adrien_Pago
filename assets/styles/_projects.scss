@@ -39,6 +39,12 @@
         padding: 0;
     }
 
+    // Style spécifique pour la page d'accueil sur mobile
+    @media (max-width: 768px) {
+        padding: 0 0.25rem; // Réduit le padding horizontal
+        gap: 1rem; // Réduit l'espacement entre les cards
+    }
+
     .project-card {
         background: white;
         border-radius: 15px;
@@ -46,6 +52,11 @@
         box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
         transition: transform 0.3s ease;
         width: 100%;
+
+        @media (max-width: 768px) {
+            border-radius: 12px; // Réduit le border-radius sur mobile
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1); // Ombre plus subtile
+        }
 
         &:hover {
             transform: translateY(-5px);
@@ -57,7 +68,7 @@
             overflow: hidden;
 
             @media (max-width: 768px) {
-                height: 180px;
+                height: 160px; // Réduit légèrement la hauteur sur mobile
             }
 
             img {
@@ -72,7 +83,7 @@
             padding: 1.5rem;
 
             @media (max-width: 768px) {
-                padding: 1rem;
+                padding: 1rem 0.75rem; // Réduit le padding horizontal
             }
 
             h3 {
@@ -81,8 +92,9 @@
                 color: $dark;
 
                 @media (max-width: 768px) {
-                    font-size: 1.25rem;
+                    font-size: 1.2rem; // Réduit légèrement la taille
                     margin: 0 0 0.75rem;
+                    line-height: 1.3;
                 }
             }
 
@@ -94,6 +106,7 @@
                 @media (max-width: 768px) {
                     margin: 0 0 0.75rem;
                     font-size: 0.9rem;
+                    line-height: 1.5;
                 }
             }
 
@@ -110,6 +123,7 @@
                     align-items: flex-start;
                     gap: 0.25rem;
                     margin-bottom: 0.75rem;
+                    font-size: 0.8rem;
                 }
 
                 .project-date,
@@ -133,6 +147,7 @@
 
                 @media (max-width: 768px) {
                     margin-bottom: 1rem;
+                    gap: 0.4rem;
                 }
 
                 .tag {
@@ -143,8 +158,9 @@
                     font-size: 0.9rem;
 
                     @media (max-width: 768px) {
-                        font-size: 0.8rem;
-                        padding: 0.25rem 0.6rem;
+                        font-size: 0.75rem;
+                        padding: 0.2rem 0.5rem;
+                        border-radius: 15px;
                     }
                 }
             }
@@ -153,6 +169,10 @@
                 display: flex;
                 justify-content: center;
                 margin-top: 1rem;
+
+                @media (max-width: 768px) {
+                    margin-top: 0.75rem;
+                }
 
                 .project-link {
                     display: inline-flex;
@@ -167,6 +187,12 @@
                     font-size: 0.9rem;
                     transition: $transition-base;
                     box-shadow: $shadow-md;
+
+                    @media (max-width: 768px) {
+                        padding: 0.6rem 1.2rem;
+                        font-size: 0.85rem;
+                        border-radius: 20px;
+                    }
 
                     &:hover {
                         transform: translateY(-2px);
