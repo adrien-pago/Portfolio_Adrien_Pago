@@ -90,8 +90,8 @@ class RssService
             return $b->getPublishedAt() <=> $a->getPublishedAt();
         });
 
-        // Limiter à 10 articles par catégorie pour éviter la surcharge
-        return array_slice($articles, 0, 10);
+        // Limiter à 2 articles par catégorie pour éviter la surcharge
+        return array_slice($articles, 0, 2);
     }
 
     /**

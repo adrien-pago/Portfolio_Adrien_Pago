@@ -60,19 +60,43 @@ class ArticleRepository extends ServiceEntityRepository
 
     /**
      * Récupère tous les articles paginés avec filtrage par catégorie
+     * Limite à 2 articles par catégorie pour l'affichage
      */
     public function findByCategory(?string $category = null): array
     {
-        $qb = $this->createQueryBuilder('a');
-
         if ($category && $category !== 'all') {
-            $qb->andWhere('a.category = :category')
-               ->setParameter('category', $category);
+            // Si une catégorie spécifique est demandée, limiter à 2
+            return $this->createQueryBuilder('a')
+                ->andWhere('a.category = :category')
+                ->setParameter('category', $category)
+                ->orderBy('a.publishedAt', 'DESC')
+                ->setMaxResults(2)
+                ->getQuery()
+                ->getResult();
         }
 
-        return $qb->orderBy('a.publishedAt', 'DESC')
-                  ->getQuery()
-                  ->getResult();
+        // Pour "all", récupérer 2 articles par catégorie
+        $categories = ['IA', 'Mobile', 'DevOps'];
+        $articles = [];
+
+        foreach ($categories as $cat) {
+            $categoryArticles = $this->createQueryBuilder('a')
+                ->andWhere('a.category = :category')
+                ->setParameter('category', $cat)
+                ->orderBy('a.publishedAt', 'DESC')
+                ->setMaxResults(2)
+                ->getQuery()
+                ->getResult();
+            
+            $articles = array_merge($articles, $categoryArticles);
+        }
+
+        // Trier tous les articles par date
+        usort($articles, function($a, $b) {
+            return $b->getPublishedAt() <=> $a->getPublishedAt();
+        });
+
+        return $articles;
     }
 
     /**
@@ -107,10 +131,11 @@ class ArticleRepository extends ServiceEntityRepository
     }
 
     /**
-     * Récupère les articles les plus récents par catégorie pour l'accueil
+     * Récupère les 2 articles les plus récents toutes catégories confondues pour l'accueil
      */
     public function findLatestForHomePage(): array
     {
+        // Récupérer 1 article par catégorie, puis garder les 2 plus récents
         $categories = ['IA', 'Mobile', 'DevOps'];
         $articles = [];
 
@@ -121,7 +146,7 @@ class ArticleRepository extends ServiceEntityRepository
             }
         }
 
-        // Trier par date pour l'affichage
+        // Trier par date pour l'affichage (plus récent en premier)
         usort($articles, function($a, $b) {
             return $b->getPublishedAt() <=> $a->getPublishedAt();
         });
