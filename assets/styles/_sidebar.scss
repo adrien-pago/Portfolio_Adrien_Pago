@@ -10,39 +10,85 @@ $primary-color: white;
 // Header Mobile
 .mobile-header {
     display: none;
+    @extend .transition-fast;
 
-    @media (max-width: 768px) {
+            @include mobile {
         display: flex;
         position: fixed;
         top: 0;
         left: 0;
         width: 100%;
         height: 60px;
-        background: linear-gradient(135deg, $gradient-start, $gradient-end);
-        padding: 0 1rem;
-        z-index: 1001;
-        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        background: rgba(33, 147, 176, 0.95);
+        padding: 0 spacing('md');
+        z-index: z-index('sticky');
+        backdrop-filter: blur(20px);
+        -webkit-backdrop-filter: blur(20px);
+        border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
         justify-content: space-between;
         align-items: center;
+        transform: translate3d(0, 0, 0);
+        
+        // Animation de cachage/révélation au scroll
+        &.header-hidden {
+            transform: translate3d(0, -100%, 0);
+        }
     }
 
     .mobile-title {
         font-size: 1.5rem;
         color: white;
         margin: 0;
+        font-weight: 600;
+        @extend .transition-fast;
+        
+        &:hover {
+            transform: scale(1.02);
+        }
     }
 
     .menu-toggle {
+        @extend .interactive;
         background: none;
         border: none;
         color: white;
         font-size: 1.5rem;
         cursor: pointer;
-        padding: 0.5rem;
-        z-index: 1002;
+        padding: spacing('sm');
+        z-index: z-index('sticky') + 1;
+        border-radius: $border-radius;
+        position: relative;
+        overflow: hidden;
         
-        &:hover {
-            opacity: 0.8;
+        // Animation du hamburger
+        .fas {
+            @extend .transition-fast;
+            transform: rotate(0deg);
+        }
+        
+        &.active .fas {
+            transform: rotate(90deg);
+        }
+        
+        // Effet ripple au touch
+        &::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 50%;
+            transform: translate(-50%, -50%);
+            transition: width $animation-fast $ease-material, 
+                        height $animation-fast $ease-material;
+        }
+        
+        &:active::after {
+            width: 60px;
+            height: 60px;
         }
     }
 }
@@ -52,27 +98,61 @@ $primary-color: white;
     position: fixed;
     top: 0;
     left: 0;
-    width: 250px;
+    width: $sidebar-width;
     height: 100vh;
-    background: linear-gradient(180deg, $gradient-start 0%, $gradient-end 100%);
-    color: white;
-    padding: 2rem;
+    background: $sidebar-bg;
+    color: $sidebar-color;
+    
+    @include desktop {
+        background: linear-gradient(180deg, rgba(33, 147, 176, 0.98) 0%, rgba(109, 213, 237, 0.98) 100%);
+    }
+    padding: spacing('xl');
     display: flex;
     flex-direction: column;
-    z-index: 1000;
+    z-index: z-index('fixed');
     overflow-y: auto;
     -webkit-overflow-scrolling: touch;
+    @extend .transition-slow;
 
-    @media (max-width: 768px) {
-        transform: translateX(-100%);
-        transition: transform 0.3s ease;
+    // Animations d'entrée
+    @extend .animate;
+    will-change: transform;
+
+    @include mobile {
+        transform: translate3d(-100%, 0, 0);
         top: 60px;
         height: calc(100vh - 60px);
-        width: 250px;
+        width: $sidebar-width-mobile;
+        background: rgba(33, 147, 176, 0.95);
+        backdrop-filter: blur(20px);
+        -webkit-backdrop-filter: blur(20px);
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        box-shadow: $shadow-2xl;
     }
 
     &.active {
-        transform: translateX(0);
+        transform: translate3d(0, 0, 0);
+        
+        // Animation des éléments internes
+        .profile-section {
+            @extend .animate-fade-in-down;
+            animation-delay: 0.1s;
+        }
+        
+        nav ul li {
+            @extend .animate-fade-in-left;
+            
+            @for $i from 1 through 5 {
+                &:nth-child(#{$i}) {
+                    animation-delay: #{0.1 + ($i * 0.05)}s;
+                }
+            }
+        }
+        
+        .social-links {
+            @extend .animate-fade-in-up;
+            animation-delay: 0.4s;
+        }
     }
 
     .profile-section {
@@ -205,7 +285,8 @@ $primary-color: white;
     transition: $transition-base;
 
     &:hover {
-        background: darken($sidebar-bg, 5%);
+        background: linear-gradient(180deg, #1c7f9a 0%, #5ac3d9 100%);
+        transform: scale(1.05);
     }
 
     @media (min-width: $breakpoint-md) {

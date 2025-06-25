@@ -2,40 +2,57 @@
   "entrypoints": {
     "app": {
       "js": [
-        "/build/runtime.7337ff42.js",
-        "/build/280.8cc80a13.js",
-        "/build/app.450578d5.js"
+        "/build/runtime.js",
+        "/build/vendors-node_modules_core-js_internals_create-property_js-node_modules_core-js_internals_dom--4861d4.js",
+        "/build/vendors-node_modules_core-js_modules_es_array_for-each_js-node_modules_core-js_modules_esnext-3c8b62.js",
+        "/build/vendors-node_modules_core-js_modules_es_object_from-entries_js-node_modules_core-js_modules_w-030571.js",
+        "/build/vendors-node_modules_core-js_modules_es_array_concat_js-node_modules_typed_js_dist_typed_module_js.js",
+        "/build/vendors-node_modules_core-js_modules_es_date_now_js-node_modules_core-js_modules_es_date_to-p-40d3cd.js",
+        "/build/app.js"
       ],
       "css": [
-        "/build/app.55662898.css"
+        "/build/app.css"
+      ]
+    },
+    "home": {
+      "js": [
+        "/build/runtime.js",
+        "/build/vendors-node_modules_core-js_internals_create-property_js-node_modules_core-js_internals_dom--4861d4.js",
+        "/build/vendors-node_modules_core-js_modules_es_array_for-each_js-node_modules_core-js_modules_esnext-3c8b62.js",
+        "/build/vendors-node_modules_core-js_modules_es_array_concat_js-node_modules_typed_js_dist_typed_module_js.js",
+        "/build/home.js"
       ]
     },
     "sidebar": {
       "js": [
-        "/build/runtime.7337ff42.js",
-        "/build/280.8cc80a13.js",
-        "/build/sidebar.69151f61.js"
+        "/build/runtime.js",
+        "/build/vendors-node_modules_core-js_internals_create-property_js-node_modules_core-js_internals_dom--4861d4.js",
+        "/build/vendors-node_modules_core-js_modules_es_array_for-each_js-node_modules_core-js_modules_esnext-3c8b62.js",
+        "/build/sidebar.js"
       ]
     },
     "projects": {
       "js": [
-        "/build/runtime.7337ff42.js",
-        "/build/280.8cc80a13.js",
-        "/build/projects.895c70b4.js"
+        "/build/runtime.js",
+        "/build/vendors-node_modules_core-js_internals_create-property_js-node_modules_core-js_internals_dom--4861d4.js",
+        "/build/vendors-node_modules_core-js_modules_es_array_for-each_js-node_modules_core-js_modules_esnext-3c8b62.js",
+        "/build/projects.js"
       ]
     },
     "veille": {
       "js": [
-        "/build/runtime.7337ff42.js",
-        "/build/280.8cc80a13.js",
-        "/build/veille.53143ef0.js"
+        "/build/runtime.js",
+        "/build/vendors-node_modules_core-js_internals_create-property_js-node_modules_core-js_internals_dom--4861d4.js",
+        "/build/vendors-node_modules_core-js_modules_es_array_for-each_js-node_modules_core-js_modules_esnext-3c8b62.js",
+        "/build/veille.js"
       ]
     },
     "contact": {
       "js": [
-        "/build/runtime.7337ff42.js",
-        "/build/280.8cc80a13.js",
-        "/build/contact.f4b6fca1.js"
+        "/build/runtime.js",
+        "/build/vendors-node_modules_core-js_internals_create-property_js-node_modules_core-js_internals_dom--4861d4.js",
+        "/build/vendors-node_modules_core-js_modules_es_object_from-entries_js-node_modules_core-js_modules_w-030571.js",
+        "/build/contact.js"
       ]
     }
   }

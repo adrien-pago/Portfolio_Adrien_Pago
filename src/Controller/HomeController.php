@@ -2,32 +2,23 @@
 
 namespace App\Controller;
 
+use App\Service\LinkService;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
 class HomeController extends AbstractController
 {
+    public function __construct(private LinkService $linkService)
+    {
+    }
+
     #[Route('/', name: 'app_home')]
     public function index(): Response
     {
-        // Données temporaires pour les projets
-        $latestProjects = [
-            [
-                'id' => 1,
-                'title' => 'Portfolio Symfony',
-                'description' => 'Portfolio personnel développé avec Symfony 6, intégrant une gestion de projets et une veille technologique.',
-                'image' => 'portfolio.jpg',
-                'tags' => ['Symfony', 'Twig', 'SCSS', 'JavaScript']
-            ],
-            [
-                'id' => 2,
-                'title' => 'Application E-commerce',
-                'description' => 'Site e-commerce complet avec gestion des produits, panier, paiement et espace administrateur.',
-                'image' => 'ecommerce.jpg',
-                'tags' => ['PHP', 'MySQL', 'Bootstrap', 'jQuery']
-            ]
-        ];
+        // Récupérer les 2 derniers projets triés par date
+        $allProjects = $this->getAllProjects();
+        $latestProjects = array_slice($allProjects, 0, 2);
 
         // Données temporaires pour les articles de veille
         $latestArticles = [
@@ -50,7 +41,8 @@ class HomeController extends AbstractController
         return $this->render('home/index.html.twig', [
             'page_title' => 'Accueil',
             'latestProjects' => $latestProjects,
-            'latestArticles' => $latestArticles
+            'latestArticles' => $latestArticles,
+            'links' => $this->linkService->getAllLinks()
         ]);
     }
 
@@ -65,25 +57,35 @@ class HomeController extends AbstractController
     #[Route('/projects', name: 'app_projects')]
     public function projects(): Response
     {
+        // Tous les projets avec système de dates et catégories
+        $projects = $this->getAllProjects();
+        
         return $this->render('projects/index.html.twig', [
             'page_title' => 'Projets',
+            'projects' => $projects
         ]);
     }
 
     #[Route('/project/{id}', name: 'app_project_show')]
     public function projectShow(int $id): Response
     {
-        // Données temporaires pour le projet (à remplacer par une requête à la base de données plus tard)
-        $project = [
-            'id' => $id,
-            'title' => 'Projet ' . $id,
-            'description' => 'Description détaillée du projet...',
-            'image' => 'project' . $id . '.jpg',
-            'tags' => ['PHP', 'Symfony', 'JavaScript'],
-            'github_url' => 'https://github.com/username/project' . $id,
-            'demo_url' => 'https://demo.project' . $id . '.com',
-            'created_at' => new \DateTime('2024-01-01')
-        ];
+        $projects = $this->getAllProjects();
+        $project = null;
+        
+        // Trouver le projet par ID
+        foreach ($projects as $p) {
+            if ($p['id'] === $id) {
+                $project = $p;
+                break;
+            }
+        }
+        
+        if (!$project) {
+            throw $this->createNotFoundException('Projet non trouvé');
+        }
+        
+        // Charger les images de la galerie
+        $project['gallery_images'] = $this->getProjectGalleryImages($project);
 
         return $this->render('projects/show.html.twig', [
             'page_title' => $project['title'],
@@ -126,6 +128,78 @@ class HomeController extends AbstractController
     {
         return $this->render('contact/index.html.twig', [
             'page_title' => 'Contact',
+            'contact_info' => $this->linkService->getContactInfo(),
+            'social_links' => $this->linkService->getSocialLinks()
         ]);
+    }
+
+    #[Route('/social-unavailable/{platform}', name: 'app_social_unavailable')]
+    public function socialUnavailable(string $platform): Response
+    {
+        $platformNames = [
+            'instagram' => 'Instagram',
+            'twitter' => 'Twitter',
+            'facebook' => 'Facebook'
+        ];
+
+        $platformName = $platformNames[$platform] ?? ucfirst($platform);
+
+        return $this->render('social/unavailable.html.twig', [
+            'page_title' => $platformName . ' - Non disponible',
+            'platform' => $platform,
+            'platform_name' => $platformName
+        ]);
+    }
+
+    /**
+     * Récupère tous les projets triés par date (plus récent en premier)
+     */
+    private function getAllProjects(): array
+    {
+        $projects = [
+            [
+                'id' => 1,
+                'title' => 'Portfolio Personnel',
+                'slug' => 'portfolio-symfony',
+                'description' => 'Portfolio personnel développé avec Symfony 7, intégrant une gestion de projets moderne, une veille technologique et une expérience mobile optimisée.',
+                'category' => 'web',
+                'cover_image' => 'cover.jpg',
+                'tags' => ['Symfony', 'Twig', 'SCSS', 'JavaScript', 'Bootstrap'],
+                'github_url' => 'https://github.com/adrien-pago/portfolio',
+                'demo_url' => null,
+                'created_at' => new \DateTime('2024-06-20'),
+                'featured' => true
+            ]
+            // Ici tu pourras ajouter tes vrais projets
+        ];
+
+        // Trier par date (plus récent en premier)
+        usort($projects, function($a, $b) {
+            return $b['created_at'] <=> $a['created_at'];
+        });
+
+        return $projects;
+    }
+
+    /**
+     * Récupère les images de la galerie d'un projet
+     */
+    private function getProjectGalleryImages(array $project): array
+    {
+        $galleryPath = $this->getParameter('kernel.project_dir') . '/public/uploads/projects/' . $project['id'] . '-' . $project['slug'] . '/gallery';
+        $galleryImages = [];
+
+        if (is_dir($galleryPath)) {
+            $files = scandir($galleryPath);
+            foreach ($files as $file) {
+                if (in_array(pathinfo($file, PATHINFO_EXTENSION), ['jpg', 'jpeg', 'png', 'webp'])) {
+                    $galleryImages[] = $file;
+                }
+            }
+            // Trier par nom pour respecter l'ordre numérique
+            sort($galleryImages);
+        }
+
+        return $galleryImages;
     }
 } 

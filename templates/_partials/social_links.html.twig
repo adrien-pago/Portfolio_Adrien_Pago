@@ -1,0 +1,65 @@
+{# Template partiel pour les liens sociaux #}
+<div class="social-links {{ class|default('') }}">
+    {% if has_social_link('github') %}
+        {% set github_url = get_social_link('github') %}
+        <a href="{{ github_url }}" 
+           {% if github_url starts with 'http' %}target="_blank" rel="noopener noreferrer"{% endif %}
+           class="social-link github interactive"
+           title="GitHub">
+            <i class="fab fa-github"></i>
+            {% if show_text|default(false) %}
+                <span>GitHub</span>
+            {% endif %}
+        </a>
+    {% endif %}
+
+    {% if has_social_link('linkedin') %}
+        {% set linkedin_url = get_social_link('linkedin') %}
+        <a href="{{ linkedin_url }}" 
+           {% if linkedin_url starts with 'http' %}target="_blank" rel="noopener noreferrer"{% endif %}
+           class="social-link linkedin interactive"
+           title="LinkedIn">
+            <i class="fab fa-linkedin"></i>
+            {% if show_text|default(false) %}
+                <span>LinkedIn</span>
+            {% endif %}
+        </a>
+    {% endif %}
+
+    {% if has_social_link('instagram') %}
+        {% set instagram_url = get_social_link('instagram') %}
+        <a href="{{ instagram_url }}" 
+           {% if instagram_url starts with 'http' %}target="_blank" rel="noopener noreferrer"{% endif %}
+           class="social-link instagram interactive"
+           title="Instagram">
+            <i class="fab fa-instagram"></i>
+            {% if show_text|default(false) %}
+                <span>Instagram</span>
+            {% endif %}
+        </a>
+    {% endif %}
+
+    {% if has_social_link('twitter') %}
+        {% set twitter_url = get_social_link('twitter') %}
+        <a href="{{ twitter_url }}" 
+           {% if twitter_url starts with 'http' %}target="_blank" rel="noopener noreferrer"{% endif %}
+           class="social-link twitter interactive"
+           title="Twitter">
+            <i class="fab fa-twitter"></i>
+            {% if show_text|default(false) %}
+                <span>Twitter</span>
+            {% endif %}
+        </a>
+    {% endif %}
+
+    {% if contact_email %}
+        <a href="mailto:{{ contact_email }}" 
+           class="social-link email interactive"
+           title="Email">
+            <i class="fas fa-envelope"></i>
+            {% if show_text|default(false) %}
+                <span>Email</span>
+            {% endif %}
+        </a>
+    {% endif %}
+</div> 

@@ -1,0 +1,24 @@
+# Configuration des liens sociaux et autres
+parameters:
+    app.links:
+        social:
+            github: 'https://github.com/adrien-pago'
+            linkedin: 'https://www.linkedin.com/feed/'
+            instagram: '/social-unavailable/instagram'  # Page template pour absence de compte
+            twitter: '/social-unavailable/twitter'      # Page template pour absence de compte
+        
+        documents:
+            cv: '%kernel.project_dir%/public/CV.pdf'
+            cv_url: '/CV.pdf'
+        
+        contact:
+            email: 'adrien.pago@gmail.com'  # Remplace par ton vrai email
+            phone: '+33 6 81 73 52 35'  # Optionnel
+        
+        # Liens rapides vers les sections du portfolio
+        internal:
+            home: 'app_home'
+            profile: 'app_profile' 
+            projects: 'app_projects'
+            veille: 'app_veille'
+            contact: 'app_contact' 

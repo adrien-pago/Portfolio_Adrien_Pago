@@ -17,6 +17,7 @@ Encore
      * and one CSS file (e.g. app.css) if your JavaScript imports CSS.
      */
     .addEntry('app', './assets/app.js')
+    .addEntry('home', './assets/js/home.js')
     .addEntry('sidebar', './assets/js/sidebar.js')
     .addEntry('projects', './assets/js/projects.js')
     .addEntry('veille', './assets/js/veille.js')

@@ -20,8 +20,40 @@
     </div>
 
     <div class="project-content">
-        <div class="project-image">
-            <img src="{{ asset('uploads/projects/' ~ project.image) }}" alt="{{ project.title }}">
+        <div class="project-gallery">
+            {% if project.gallery_images|length > 0 %}
+                <div id="projectCarousel" class="carousel slide" data-bs-ride="carousel">
+                    <div class="carousel-indicators">
+                        {% for image in project.gallery_images %}
+                            <button type="button" data-bs-target="#projectCarousel" data-bs-slide-to="{{ loop.index0 }}" 
+                                    {% if loop.first %}class="active" aria-current="true"{% endif %} 
+                                    aria-label="Image {{ loop.index }}"></button>
+                        {% endfor %}
+                    </div>
+                    <div class="carousel-inner">
+                        {% for image in project.gallery_images %}
+                            <div class="carousel-item {% if loop.first %}active{% endif %}">
+                                <img src="{{ asset('uploads/projects/' ~ project.id ~ '-' ~ project.slug ~ '/gallery/' ~ image) }}" 
+                                     class="d-block w-100" 
+                                     alt="{{ project.title }} - Image {{ loop.index }}">
+                            </div>
+                        {% endfor %}
+                    </div>
+                    <button class="carousel-control-prev" type="button" data-bs-target="#projectCarousel" data-bs-slide="prev">
+                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Précédent</span>
+                    </button>
+                    <button class="carousel-control-next" type="button" data-bs-target="#projectCarousel" data-bs-slide="next">
+                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Suivant</span>
+                    </button>
+                </div>
+            {% else %}
+                <div class="project-image-fallback">
+                    <img src="{{ asset('uploads/projects/' ~ project.id ~ '-' ~ project.slug ~ '/' ~ project.cover_image) }}" 
+                         alt="{{ project.title }}" class="img-fluid">
+                </div>
+            {% endif %}
         </div>
 
         <div class="project-description">

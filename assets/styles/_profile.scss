@@ -85,6 +85,52 @@
     }
 }
 
+// Style spécifique pour les liens sociaux dans le profil
+.profile-social-links {
+    display: flex;
+    justify-content: center;
+    gap: $spacing-md;
+
+    .social-link {
+        color: $primary;
+        font-size: 1.5rem;
+        transition: $transition-base;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        background: rgba($primary, 0.1);
+
+        &:hover {
+            color: white;
+            transform: translateY(-3px) scale(1.1);
+            text-decoration: none;
+        }
+
+        &.github:hover {
+            background: linear-gradient(135deg, #333 0%, #24292e 100%);
+        }
+
+        &.linkedin:hover {
+            background: linear-gradient(135deg, #0077b5 0%, #005582 100%);
+        }
+
+        &.instagram:hover {
+            background: linear-gradient(135deg, #e4405f 0%, #c13584 100%);
+        }
+
+        &.twitter:hover {
+            background: linear-gradient(135deg, #1da1f2 0%, #0d95e8 100%);
+        }
+
+        &.email:hover {
+            background: linear-gradient(135deg, #ea4335 0%, #c5221f 100%);
+        }
+    }
+}
+
 // Responsive adjustments
 @media (max-width: $breakpoint-md) {
     .profile-header {
@@ -102,6 +148,16 @@
     .skills-section {
         .card {
             margin-bottom: $spacing-lg;
+        }
+    }
+
+    .profile-social-links {
+        gap: $spacing-sm;
+
+        .social-link {
+            width: 36px;
+            height: 36px;
+            font-size: 1.3rem;
         }
     }
 } 

@@ -3,7 +3,7 @@
 {% block title %}Portfolio - Adrien Pago{% endblock %}
 
 {% block body %}
-    <section class="hero-section">
+    <section class="hero-section scroll-reveal">
         <div class="clouds">
             {% for i in 1..5 %}
                 <div class="cloud"></div>
@@ -14,12 +14,12 @@
                 <div class="particle"></div>
             {% endfor %}
         </div>
-        <div class="hero-content">
-            <h1 class="main-title">Adrien Pago</h1>
-            <div class="typing-container">
+        <div class="hero-content glass">
+            <h1 class="main-title animate-fade-in-down">Adrien Pago</h1>
+            <div class="typing-container animate-fade-in-up">
                 <span id="typed-text"></span>
             </div>
-            <a href="{{ asset('CV.pdf') }}" class="download-btn" download>
+            <a href="{{ cv_url }}" class="download-btn interactive morph-button animate-scale-in" download>
                 <i class="fas fa-download"></i>
                 Télécharger mon CV
             </a>
@@ -27,28 +27,37 @@
     </section>
 
     <div class="latest-sections">
-        <div class="section-container">
+        <div class="section-container scroll-reveal from-left">
             <div class="section-header">
-                <h2>Derniers Projets</h2>
-                <a href="{{ path('app_projects') }}" class="view-all">Voir tout</a>
+                <h2 class="animate-item">Derniers Projets</h2>
+                <a href="{{ path('app_projects') }}" class="view-all interactive animate-item">Voir tout</a>
             </div>
-            <div class="projects-grid">
+            <div class="projects-grid animate-stagger">
                 {% for project in latestProjects %}
-                    {% include 'projects/_project_card.html.twig' with {'project': project} %}
+                    <div class="animate-item">
+                        {% include 'projects/_project_card.html.twig' with {'project': project} %}
+                    </div>
                 {% endfor %}
             </div>
         </div>
 
-        <div class="section-container">
+        <div class="section-container scroll-reveal from-right">
             <div class="section-header">
-                <h2>Dernière Veille Technologique</h2>
-                <a href="{{ path('app_veille') }}" class="view-all">Voir tout</a>
+                <h2 class="animate-item">Dernière Veille Technologique</h2>
+                <a href="{{ path('app_veille') }}" class="view-all interactive animate-item">Voir tout</a>
             </div>
-            <div class="veille-grid">
+            <div class="veille-grid animate-stagger">
                 {% for article in latestArticles %}
-                    {% include 'veille/_article_card.html.twig' with {'article': article} %}
+                    <div class="animate-item">
+                        {% include 'veille/_article_card.html.twig' with {'article': article} %}
+                    </div>
                 {% endfor %}
             </div>
         </div>
     </div>
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    {{ encore_entry_script_tags('home') }}
 {% endblock %} 
