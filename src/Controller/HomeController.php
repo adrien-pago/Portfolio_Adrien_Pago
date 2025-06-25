@@ -159,18 +159,60 @@ class HomeController extends AbstractController
         $projects = [
             [
                 'id' => 1,
-                'title' => 'Portfolio Personnel',
-                'slug' => 'portfolio-symfony',
-                'description' => 'Portfolio personnel développé avec Symfony 7, intégrant une gestion de projets moderne, une veille technologique et une expérience mobile optimisée.',
+                'title' => 'Compte Rendu Médical',
+                'slug' => 'CRM',
+                'description' => 'Application de gestion de comptes rendus médicaux permettant aux professionnels de santé de créer, gérer et partager des rapports médicaux de manière sécurisée et efficace pour leurs clients.',
                 'category' => 'web',
-                'cover_image' => 'cover.jpg',
-                'tags' => ['Symfony', 'Twig', 'SCSS', 'JavaScript', 'Bootstrap'],
-                'github_url' => 'https://github.com/adrien-pago/portfolio',
+                'cover_image' => 'CRM-Cover.PNG',
+                'demo_image' => 'Demo/Demo.PNG',
+                'tags' => ['PHP', 'Symfony', 'MySQL', 'Bootstrap', 'JavaScript'],
+                'github_url' => 'https://github.com/adrien-pago/Compte_Rendu_Medical',
                 'demo_url' => null,
-                'created_at' => new \DateTime('2024-06-20'),
+                'created_at' => new \DateTime('2025-01-01'),
+                'featured' => true
+            ],
+            [
+                'id' => 2,
+                'title' => 'EventPro',
+                'slug' => 'EventPro',
+                'description' => 'Event Pro est une application web moderne et complète, développée avec le framework Symfony, conçue pour simplifier la gestion d\'événements professionnels. De la planification à la synchronisation avec des services externes comme Google Agenda, Event Pro centralise toutes les opérations pour une productivité maximale.',
+                'category' => 'web',
+                'cover_image' => 'EventPro-Cover.PNG',
+                'demo_image' => 'Demo/Demo.PNG',
+                'tags' => ['PHP', 'Symfony', 'MySQL', 'Bootstrap', 'JavaScript'],
+                'github_url' => 'https://github.com/adrien-pago/Event_Pro',
+                'demo_url' => null,
+                'created_at' => new \DateTime('2025-06-15'),
+                'featured' => true
+            ],
+            [
+                'id' => 3,
+                'title' => 'VacaMeet Web',
+                'slug' => 'VacaMeetWeb',
+                'description' => 'Vaca-Meet est une application web pour les gérants de campings et clubs de vacances, permettant de gérer efficacement leur planning d\'activités et leurs services. Le système est complété par une application mobile destinée aux vacanciers, leur offrant un accès facile aux activités, services proposés par le camping et bien pleins d\'autres options .....',
+                'category' => 'web',
+                'cover_image' => 'VacaMeetWeb-Cover.PNG',
+                'demo_image' => 'Demo/Demo.PNG',
+                'tags' => ['PHP', 'Symfony', 'MySQL', 'Bootstrap', 'JavaScript'],
+                'github_url' => 'https://github.com/adrien-pago/Vaca_Meet_Web',
+                'demo_url' => null,
+                'created_at' => new \DateTime('2025-07-20'),
+                'featured' => true
+            ],
+            [
+                'id' => 4,
+                'title' => 'VacaMeet Mobile',
+                'slug' => 'VacaMeetMobile',
+                'description' => 'Vaca Meet est une application mobile permettant aux utilisateurs de se connecter et d\'avoir connaissance de toutes les activités et plus du camping. Elle utilise une architecture moderne avec Flutter pour le frontend et une API RESTful Symfony pour le backend.',
+                'category' => 'mobile',
+                'cover_image' => 'VacaMeetWeb-Cover.PNG',
+                'demo_image' => 'Demo/Demo.PNG',
+                'tags' => ['React', 'Flutter', 'Symphony API','MySQL'],
+                'github_url' => 'https://github.com/adrien-pago/Vaca_Meet_Flutter',
+                'demo_url' => null,
+                'created_at' => new \DateTime('2025-09-10'),
                 'featured' => true
             ]
-            // Ici tu pourras ajouter tes vrais projets
         ];
 
         // Trier par date (plus récent en premier)
@@ -192,7 +234,7 @@ class HomeController extends AbstractController
         if (is_dir($galleryPath)) {
             $files = scandir($galleryPath);
             foreach ($files as $file) {
-                if (in_array(pathinfo($file, PATHINFO_EXTENSION), ['jpg', 'jpeg', 'png', 'webp'])) {
+                if (in_array(pathinfo($file, PATHINFO_EXTENSION), ['jpg', 'jpeg', 'png', 'webp','PNG'])) {
                     $galleryImages[] = $file;
                 }
             }

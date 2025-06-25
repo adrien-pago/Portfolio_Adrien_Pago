@@ -87,13 +87,41 @@
             }
 
             p {
-                margin: 0 0 1.5rem;
+                margin: 0 0 1rem;
                 color: $secondary;
                 line-height: 1.6;
 
                 @media (max-width: 768px) {
-                    margin: 0 0 1rem;
+                    margin: 0 0 0.75rem;
                     font-size: 0.9rem;
+                }
+            }
+
+            .project-meta {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                margin-bottom: 1rem;
+                font-size: 0.85rem;
+                color: lighten($secondary, 10%);
+
+                @media (max-width: 768px) {
+                    flex-direction: column;
+                    align-items: flex-start;
+                    gap: 0.25rem;
+                    margin-bottom: 0.75rem;
+                }
+
+                .project-date,
+                .project-category {
+                    display: flex;
+                    align-items: center;
+                    gap: 0.25rem;
+
+                    i {
+                        color: $primary;
+                        font-size: 0.8rem;
+                    }
                 }
             }
 
@@ -121,6 +149,48 @@
                 }
             }
 
+            .project-actions {
+                display: flex;
+                justify-content: center;
+                margin-top: 1rem;
+
+                .project-link {
+                    display: inline-flex;
+                    align-items: center;
+                    gap: 0.5rem;
+                    padding: 0.7rem 1.5rem;
+                    background: linear-gradient(135deg, $primary 0%, $accent-color 100%);
+                    color: white;
+                    border-radius: 25px;
+                    text-decoration: none;
+                    font-weight: 500;
+                    font-size: 0.9rem;
+                    transition: $transition-base;
+                    box-shadow: $shadow-md;
+
+                    &:hover {
+                        transform: translateY(-2px);
+                        box-shadow: $shadow-lg;
+                        text-decoration: none;
+                        color: white;
+                    }
+
+                    &:active {
+                        transform: translateY(0);
+                    }
+
+                    i {
+                        font-size: 0.8rem;
+                        transition: transform 0.3s ease;
+                    }
+
+                    &:hover i {
+                        transform: translateX(3px);
+                    }
+                }
+            }
+
+            // Anciens styles pour compatibilité
             .project-links {
                 display: flex;
                 gap: 1rem;
