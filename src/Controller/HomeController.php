@@ -2,15 +2,20 @@
 
 namespace App\Controller;
 
+use App\Repository\ArticleRepository;
 use App\Service\LinkService;
+use App\Service\VeilleService;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
 class HomeController extends AbstractController
 {
-    public function __construct(private LinkService $linkService)
-    {
+    public function __construct(
+        private LinkService $linkService,
+        private VeilleService $veilleService,
+        private ArticleRepository $articleRepository
+    ) {
     }
 
     #[Route('/', name: 'app_home')]
@@ -20,23 +25,13 @@ class HomeController extends AbstractController
         $allProjects = $this->getAllProjects();
         $latestProjects = array_slice($allProjects, 0, 2);
 
-        // Données temporaires pour les articles de veille
-        $latestArticles = [
-            [
-                'id' => 1,
-                'title' => 'Les nouveautés de Symfony 6.4',
-                'description' => 'Découvrez les nouvelles fonctionnalités de Symfony 6.4, notamment les améliorations de performance, les nouveaux composants et les changements majeurs.',
-                'date' => new \DateTime('2024-04-01'),
-                'category' => 'Framework'
-            ],
-            [
-                'id' => 2,
-                'title' => 'L\'avenir du développement web en 2024',
-                'description' => 'Explorez les tendances émergentes du développement web, de l\'IA aux nouvelles architectures front-end, en passant par les frameworks modernes.',
-                'date' => new \DateTime('2024-03-28'),
-                'category' => 'Tendances'
-            ]
-        ];
+        // Récupérer les 2 derniers articles de veille (BDD ou simulés si vide)
+        $latestArticles = $this->articleRepository->findLatestForHomePage();
+        
+        // Si pas d'articles en BDD, utiliser les articles simulés
+        if (empty($latestArticles)) {
+            $latestArticles = $this->veilleService->getLatestForHomePage();
+        }
 
         return $this->render('home/index.html.twig', [
             'page_title' => 'Accueil',
@@ -96,30 +91,45 @@ class HomeController extends AbstractController
     #[Route('/veille', name: 'app_veille')]
     public function veille(): Response
     {
+        // Récupérer tous les articles de veille (BDD ou simulés si vide)
+        $articles = $this->articleRepository->findByCategory();
+        $categoryStats = $this->articleRepository->countByCategory();
+        
+        // Si pas d'articles en BDD, utiliser les articles simulés
+        if (empty($articles)) {
+            $articles = $this->veilleService->getLatestArticles(20);
+            $categoryStats = $this->veilleService->getCategoryStats();
+        }
+
         return $this->render('veille/index.html.twig', [
             'page_title' => 'Veille Technologique',
+            'articles' => $articles,
+            'category_stats' => $categoryStats,
         ]);
     }
 
     #[Route('/veille/{id}', name: 'app_veille_show')]
     public function veilleShow(int $id): Response
     {
-        // Données temporaires pour l'article de veille (à remplacer par une requête à la base de données plus tard)
-        $veille = [
-            'id' => $id,
-            'title' => 'Article de veille ' . $id,
-            'description' => 'Contenu détaillé de l\'article de veille...',
-            'category' => 'Framework',
-            'date' => new \DateTime('2024-01-01'),
-            'sources' => [
-                'https://source1.com',
-                'https://source2.com'
-            ]
-        ];
+        // Essayer d'abord de récupérer depuis la BDD
+        $article = $this->articleRepository->find($id);
+        
+        // Si pas trouvé en BDD, utiliser les articles simulés
+        if (!$article) {
+            $simulatedArticle = $this->veilleService->getArticleById($id);
+            if (!$simulatedArticle) {
+                throw $this->createNotFoundException('Article de veille non trouvé');
+            }
+            
+            return $this->render('veille/show.html.twig', [
+                'page_title' => $simulatedArticle['title'],
+                'veille' => $simulatedArticle
+            ]);
+        }
 
         return $this->render('veille/show.html.twig', [
-            'page_title' => $veille['title'],
-            'veille' => $veille
+            'page_title' => $article->getTitle(),
+            'veille' => $article
         ]);
     }
 

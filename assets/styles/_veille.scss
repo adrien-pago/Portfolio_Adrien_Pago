@@ -249,16 +249,44 @@
         overflow: hidden;
         box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
         transition: transform 0.3s ease;
+        position: relative;
 
         &:hover {
             transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
         }
 
         .veille-content {
             padding: 1.5rem;
+            position: relative;
 
             @media (max-width: 768px) {
                 padding: 1rem;
+            }
+
+            .veille-category-badge {
+                position: absolute;
+                top: -0.5rem;
+                right: 1rem;
+                padding: 0.4rem 0.8rem;
+                border-radius: 15px;
+                color: white;
+                font-size: 0.8rem;
+                font-weight: 600;
+                box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+                display: inline-flex;
+                align-items: center;
+                gap: 0.3rem;
+
+                @media (max-width: 768px) {
+                    font-size: 0.7rem;
+                    padding: 0.3rem 0.6rem;
+                    right: 0.5rem;
+                }
+
+                i {
+                    font-size: 0.9em;
+                }
             }
 
             .veille-date {
@@ -313,6 +341,70 @@
                 }
             }
 
+            .veille-actions {
+                display: flex;
+                gap: 0.75rem;
+                margin-top: 1rem;
+
+                @media (max-width: 768px) {
+                    flex-direction: column;
+                    gap: 0.5rem;
+                }
+
+                .veille-link {
+                    display: inline-flex;
+                    align-items: center;
+                    gap: 0.4rem;
+                    padding: 0.6rem 1rem;
+                    border-radius: 8px;
+                    text-decoration: none;
+                    font-weight: 500;
+                    font-size: 0.9rem;
+                    transition: all 0.3s ease;
+                    
+                    &.external {
+                        background: linear-gradient(135deg, $primary, $accent-color);
+                        color: white;
+                        flex: 1;
+                        justify-content: center;
+
+                        &:hover {
+                            transform: translateY(-2px);
+                            box-shadow: 0 5px 15px rgba($accent-color, 0.3);
+                            text-decoration: none;
+                            color: white;
+                        }
+                    }
+
+                    &.details {
+                        background: rgba($primary, 0.1);
+                        color: $primary;
+                        border: 1px solid rgba($primary, 0.2);
+
+                        &:hover {
+                            background: rgba($primary, 0.15);
+                            border-color: rgba($primary, 0.3);
+                            text-decoration: none;
+                            color: $primary;
+                        }
+                    }
+
+                    &:active {
+                        transform: translateY(0);
+                    }
+
+                    i {
+                        font-size: 0.8rem;
+                        transition: transform 0.3s ease;
+                    }
+
+                    &:hover i {
+                        transform: translateX(2px);
+                    }
+                }
+            }
+
+            // Ancien style pour compatibilité
             .read-more {
                 display: inline-flex;
                 align-items: center;

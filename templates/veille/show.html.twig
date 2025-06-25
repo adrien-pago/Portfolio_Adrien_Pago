@@ -1,29 +1,47 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}{{ veille.title }} - Portfolio{% endblock %}
+{% set title = veille.title is defined ? veille.title : veille.getTitle() %}
+{% set description = veille.description is defined ? veille.description : veille.getDescription() %}
+{% set date = veille.date is defined ? veille.date : veille.getPublishedAt() %}
+{% set category = veille.category is defined ? veille.category : veille.getCategory() %}
+{% set url = veille.url is defined ? veille.url : veille.getUrl() %}
+{% set source = veille.source is defined ? veille.source : veille.getSource() %}
+
+{% block title %}{{ title }} - Portfolio{% endblock %}
 
 {% block body %}
 <div class="veille-details">
     <div class="veille-header">
-        <h1>{{ veille.title }}</h1>
+        <h1>{{ title }}</h1>
         <div class="veille-meta">
             <span class="date">
                 <i class="far fa-calendar"></i>
-                {{ veille.date|date('d/m/Y') }}
+                {{ veille_format_date(date) }}
             </span>
             <span class="category">
-                <i class="fas fa-tag"></i>
-                {{ veille.category }}
+                <i class="{{ veille_get_category_icon(category) }}"></i>
+                {{ category }}
+            </span>
+            <span class="source">
+                <i class="fas fa-rss"></i>
+                {{ source }}
             </span>
         </div>
     </div>
 
     <div class="veille-content">
         <div class="veille-description">
-            {{ veille.description|raw }}
+            {{ description|nl2br }}
         </div>
 
-        {% if veille.sources|length > 0 %}
+        <div class="veille-actions">
+            <a href="{{ url }}" target="_blank" rel="noopener" class="btn btn-primary">
+                <i class="fas fa-external-link-alt"></i>
+                Lire l'article complet
+            </a>
+        </div>
+
+        {% if veille.sources is defined and veille.sources|length > 0 %}
             <div class="veille-sources">
                 <h2>Sources</h2>
                 <ul>

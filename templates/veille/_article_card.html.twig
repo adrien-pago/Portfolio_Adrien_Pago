@@ -1,20 +1,38 @@
 <div class="veille-card">
     <div class="veille-content">
-        <h3>{{ article.title }}</h3>
-        <p>{{ article.description|slice(0, 200) }}...</p>
+        {% set category = article.category is defined ? article.category : article.getCategory() %}
+        {% set title = article.title is defined ? article.title : article.getTitle() %}
+        {% set description = article.description is defined ? article.description : article.getDescription() %}
+        {% set date = article.date is defined ? article.date : article.getPublishedAt() %}
+        {% set source = article.source is defined ? article.source : article.getSource() %}
+        {% set url = article.url is defined ? article.url : article.getUrl() %}
+        {% set id = article.id is defined ? article.id : article.getId() %}
+        
+        <div class="veille-category-badge" style="background-color: {{ veille_get_category_color(category) }};">
+            <i class="{{ veille_get_category_icon(category) }}"></i>
+            {{ category }}
+        </div>
+        <h3>{{ title }}</h3>
+        <p>{{ veille_get_short_description(description, 150) }}</p>
         <div class="veille-meta">
             <span class="date">
                 <i class="far fa-calendar"></i>
-                {{ article.date|date('d/m/Y') }}
+                {{ veille_format_date(date) }}
             </span>
-            <span class="category">
-                <i class="fas fa-tag"></i>
-                {{ article.category }}
+            <span class="source">
+                <i class="fas fa-rss"></i>
+                {{ source }}
             </span>
         </div>
-        <a href="{{ path('app_veille_show', {'id': article.id}) }}" class="veille-link">
-            Lire la suite
-            <i class="fas fa-arrow-right"></i>
-        </a>
+        <div class="veille-actions">
+            <a href="{{ url }}" target="_blank" rel="noopener" class="veille-link external">
+                <i class="fas fa-external-link-alt"></i>
+                Lire l'article
+            </a>
+            <a href="{{ path('app_veille_show', {'id': id}) }}" class="veille-link details">
+                Détails
+                <i class="fas fa-arrow-right"></i>
+            </a>
+        </div>
     </div>
 </div> 

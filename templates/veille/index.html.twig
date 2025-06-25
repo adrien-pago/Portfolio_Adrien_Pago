@@ -16,53 +16,47 @@
     </div>
 
     <div class="articles-grid">
-        <div class="article-item" data-category="IA">
-            <div class="card">
-                <div class="card-body">
-                    <span class="category-badge">IA</span>
-                    <h5 class="card-title">Les tendances IA 2024</h5>
-                    <p class="card-text">Découvrez les dernières tendances en matière de CSS, des nouvelles propriétés aux frameworks populaires.</p>
-                    <div class="article-meta">
-                        <span class="date">15 Mars 2024</span>
-                        <div class="sources">
-                            <a href="#" target="_blank">MDN</a>
-                            <a href="#" target="_blank">CSS-Tricks</a>
+        {% for article in articles %}
+            {% set category = article.category is defined ? article.category : article.getCategory() %}
+            {% set title = article.title is defined ? article.title : article.getTitle() %}
+            {% set description = article.description is defined ? article.description : article.getDescription() %}
+            {% set date = article.date is defined ? article.date : article.getPublishedAt() %}
+            {% set source = article.source is defined ? article.source : article.getSource() %}
+            {% set url = article.url is defined ? article.url : article.getUrl() %}
+            
+            <div class="article-item" data-category="{{ category }}">
+                <div class="card">
+                    <div class="card-body">
+                        <span class="category-badge" style="background-color: {{ veille_get_category_color(category) }}20; color: {{ veille_get_category_color(category) }};">
+                            <i class="{{ veille_get_category_icon(category) }}"></i>
+                            {{ category }}
+                        </span>
+                        <h5 class="card-title">{{ title }}</h5>
+                        <p class="card-text">{{ veille_get_short_description(description, 120) }}</p>
+                        <div class="article-meta">
+                            <span class="date">
+                                <i class="far fa-calendar"></i>
+                                {{ veille_format_date(date) }}
+                            </span>
+                            <div class="sources">
+                                <span class="source">{{ source }}</span>
+                                <a href="{{ url }}" target="_blank" rel="noopener">
+                                    <i class="fas fa-external-link-alt"></i>
+                                    Lire l'article
+                                </a>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
-
-        <div class="article-item" data-category="mobile">
-            <div class="card">
-                <div class="card-body">
-                    <span class="category-badge">Mobile</span>
-                    <h5 class="card-title">Le développement cross-platform en 2024</h5>
-                    <p class="card-text">Comparaison des différentes solutions de développement cross-platform pour mobile.</p>
-                    <div class="article-meta">
-                        <span class="date">5 Mars 2024</span>
-                        <div class="sources">
-                            <a href="#" target="_blank">Medium</a>
-                        </div>
-                    </div>
+        {% else %}
+            <div class="col-12 text-center">
+                <div class="no-articles">
+                    <i class="fas fa-newspaper fa-3x text-muted mb-3"></i>
+                    <h3 class="text-muted">Aucun article disponible</h3>
+                    <p class="text-muted">La veille technologique sera mise à jour automatiquement.</p>
                 </div>
             </div>
-        </div>
-
-        <div class="article-item" data-category="devops">
-            <div class="card">
-                <div class="card-body">
-                    <span class="category-badge">DevOps</span>
-                    <h5 class="card-title">CI/CD avec GitHub Actions</h5>
-                    <p class="card-text">Guide pratique pour mettre en place un pipeline CI/CD efficace avec GitHub Actions.</p>
-                    <div class="article-meta">
-                        <span class="date">1 Mars 2024</span>
-                        <div class="sources">
-                            <a href="#" target="_blank">GitHub Docs</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+        {% endfor %}
     </div>
 {% endblock %} 
