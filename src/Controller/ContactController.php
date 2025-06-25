@@ -30,7 +30,7 @@ class ContactController extends AbstractController
 
         // Préparation de l'email
         $mail = (new Email())
-            ->from('portfolio@' . $request->getHost())
+            ->from('adrien-pago@vaca-meet.fr')
             ->to('adrien.pago@gmail.com')
             ->subject('Message')
             ->text(
