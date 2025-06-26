@@ -94,3 +94,19 @@ echo "🌐 Testez maintenant vos routes :"
 echo "   - / (home)"
 echo "   - /contact"
 echo "   - /projects" 
+
+
+# 7. Voir les groupes de votre utilisateur Plesk (pour confirmer)
+id adrien-pago-portfoli_m3xt23djqec
+
+# 8. Changer le groupe du fichier data.db pour psacln
+sudo chgrp psacln var/data.db
+
+# 9. Vérifier que c'est bien appliqué
+ls -la var/data.db
+
+# 10. Optionnel : changer aussi le répertoire var/ si nécessaire
+sudo chgrp psacln var/
+
+# 11. Vérification finale
+ls -la var/
