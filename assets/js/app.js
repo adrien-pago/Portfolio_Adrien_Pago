@@ -1,5 +1,5 @@
 // Import all JavaScript files
-import './sidebar';
-import './projects';
-import './veille';
-import './contact'; 
+import './sidebar.js';
+import './projects.js';
+import './veille.js';
+import './contact.js'; 
