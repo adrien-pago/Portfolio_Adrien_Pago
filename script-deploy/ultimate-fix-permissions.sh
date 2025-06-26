@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/bash cd /var/www/vhosts/adrien-pago-portfolio.fr/httpdocs#
 
 echo "🚨 CORRECTION ULTIME PERMISSIONS - Portfolio Adrien Pago"
 echo "========================================================"
