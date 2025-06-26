@@ -1,5 +1,50 @@
 @import 'variables';
 
+// Override complet des contraintes de largeur pour la page contact
+body:has(.contact-form-container) {
+    #content {
+        width: 100% !important;
+        margin-left: $sidebar-width !important;
+        padding: 1rem !important;
+        
+        @media (max-width: $breakpoint-md) {
+            margin-left: 0 !important;
+            padding: 0.5rem !important;
+        }
+    }
+    
+    .container {
+        max-width: none !important;
+        width: 100% !important;
+        padding: 0 !important;
+        margin: 0 !important;
+    }
+}
+
+.contact-form-container {
+    width: 100% !important;
+    max-width: none !important;
+    margin: 0 !important;
+    padding: 0 1rem !important;
+    box-sizing: border-box;
+    
+    // Override Bootstrap containers sur tous les écrans
+    .container, .container-fluid {
+        max-width: none !important;
+        width: 100% !important;
+        padding: 0 !important;
+        margin: 0 !important;
+    }
+    
+    .card {
+        width: 100% !important;
+        max-width: none !important;
+        margin: 0 auto !important;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1) !important;
+        border-radius: 15px !important;
+    }
+}
+
 // Contact Header
 .contact-header {
     margin-bottom: 3rem;
@@ -25,8 +70,9 @@
 
     .lead {
         color: $secondary;
-        max-width: 600px;
+        max-width: 100%;
         margin: 0 auto;
+        padding: 0 1rem;
     }
 }
 
@@ -293,42 +339,65 @@
     }
 }
 
+// Mobile optimizations - Version améliorée
 @media (max-width: 768px) {
+    // Suppression des marges par défaut du body/html sur mobile
+    body {
+        margin: 0;
+        padding: 0;
+        overflow-x: hidden;
+    }
+    
+    // S'assurer qu'aucune classe Bootstrap ne limite la largeur
+    .container, .container-fluid, .container-sm, .container-md, .container-lg, .container-xl {
+        max-width: 100% !important;
+        padding-left: 0 !important;
+        padding-right: 0 !important;
+        margin-left: 0 !important;
+        margin-right: 0 !important;
+    }
+    
     .contact-header {
-        margin-bottom: 2rem;
+        margin-bottom: 1.5rem;
+        padding: 0 0.5rem;
 
         .section-title {
-            font-size: 1.75rem;
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
             
             &:after {
-                width: 60%;
+                width: 70%;
                 height: 3px;
                 bottom: -8px;
             }
         }
 
         .lead {
-            font-size: 1rem;
-            padding: 0 0.5rem;
+            font-size: 1.05rem;
+            padding: 0;
+            margin-bottom: 0;
+            line-height: 1.4;
         }
     }
 
     .contact-form-container {
-        padding: 0 1px;
-        margin: 0;
-        width: 100%;
-        max-width: 100%;
+        padding: 0 0.5% !important;
+        margin: 0 !important;
+        width: 99% !important;
+        max-width: 99% !important;
         box-sizing: border-box;
 
         .card {
-            border-radius: 2px;
-            margin: 0;
-            width: 100%;
-            max-width: 100%;
+            border-radius: 12px !important;
+            margin: 0 !important;
+            width: 100% !important;
+            max-width: 100% !important;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.12) !important;
+            border: none !important;
         }
 
         .card-body {
-            padding: 1.5rem 1rem;
+            padding: 1.75rem 1rem;
         }
 
         .contact-info {
@@ -337,47 +406,157 @@
 
             .info-item {
                 margin-bottom: 1.5rem;
+                padding: 0.5rem 0;
 
                 &:last-child {
                     margin-bottom: 0;
                 }
 
                 i {
-                    font-size: 1.3rem;
+                    font-size: 1.4rem;
+                    margin-bottom: 0.5rem;
                 }
 
                 h5 {
-                    font-size: 1rem;
+                    font-size: 1.1rem;
+                    font-weight: 600;
                 }
 
                 p {
-                    font-size: 0.9rem;
+                    font-size: 0.95rem;
+                    line-height: 1.4;
                 }
             }
         }
 
         .form-group {
-            margin-bottom: 1.25rem;
+            margin-bottom: 1.5rem;
+
+            .form-label {
+                font-size: 1rem;
+                font-weight: 500;
+                margin-bottom: 0.5rem;
+                color: $dark;
+            }
 
             .form-control {
-                padding: 0.7rem;
-                font-size: 0.95rem;
+                padding: 0.875rem 1rem;
+                font-size: 1rem;
+                border-radius: 10px;
+                border: 1.5px solid rgba($secondary, 0.2);
+                width: 100%;
+                transition: all 0.3s ease;
+
+                &:focus {
+                    border-color: $gradient-end;
+                    box-shadow: 0 0 0 0.2rem rgba($gradient-end, 0.15);
+                    transform: translateY(-1px);
+                }
+
+                &::placeholder {
+                    color: rgba($secondary, 0.6);
+                }
+            }
+
+            textarea.form-control {
+                min-height: 120px;
+                resize: vertical;
             }
         }
 
         .btn-primary {
-            padding: 0.8rem 1.5rem;
-            font-size: 0.95rem;
+            padding: 1rem 2rem;
+            font-size: 1rem;
+            font-weight: 600;
             width: 100%;
+            border-radius: 10px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-top: 0.5rem;
+            transition: all 0.3s ease;
+
+            &:hover, &:focus {
+                transform: translateY(-2px);
+                box-shadow: 0 8px 20px rgba($gradient-end, 0.3);
+            }
+
+            &:active {
+                transform: translateY(0);
+            }
         }
     }
 
     .contact-social-links {
         margin-top: 2rem;
+        margin-bottom: 1rem;
+        display: flex !important;
+        justify-content: center !important;
+        align-items: center !important;
+        gap: 1rem !important;
+        width: 100% !important;
         
         .social-link {
-            font-size: 1.3rem;
-            margin: 0 0.5rem;
+            font-size: 1.4rem;
+            margin: 0 !important;
+            padding: 0.6rem;
+            border-radius: 50%;
+            transition: all 0.3s ease;
+            flex-shrink: 0;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            
+            &:hover {
+                background: rgba($gradient-end, 0.1);
+                transform: translateY(-2px);
+            }
+        }
+    }
+}
+
+// Optimisation pour très petits écrans (320px et moins)
+@media (max-width: 480px) {
+    .contact-header {
+        padding: 0 0.25rem;
+        
+        .section-title {
+            font-size: 1.6rem;
+        }
+        
+        .lead {
+            font-size: 1rem;
+        }
+    }
+
+    .contact-form-container {
+        padding: 0 0.25% !important;
+        width: 99.5% !important;
+
+        .card-body {
+            padding: 1.5rem 0.75rem !important;
+        }
+
+        .form-group {
+            .form-control {
+                padding: 0.75rem 0.875rem;
+                font-size: 0.95rem;
+            }
+        }
+
+        .btn-primary {
+            padding: 0.875rem 1.5rem;
+            font-size: 0.95rem;
+        }
+    }
+    
+    .contact-social-links {
+        gap: 0.8rem !important;
+        margin-top: 1.5rem !important;
+        padding: 0 0.5rem !important;
+        
+        .social-link {
+            font-size: 1.3rem !important;
+            padding: 0.5rem !important;
         }
     }
 }
@@ -410,11 +589,94 @@
 
 @media (max-width: 768px) {
     .contact-form-title {
-        font-size: 1.3rem;
-        margin-bottom: 1.2rem;
+        font-size: 1.4rem;
+        margin-bottom: 1.5rem;
         width: 100%;
-        white-space: nowrap;
+        text-align: center;
+        
+        &::after {
+            width: 80%;
+        }
+    }
+}
+
+// Ajout d'animations et effets visuels mobiles
+.contact-form-container {
+    .form-group {
+        position: relative;
+        
+        .form-control {
+            &:focus + .form-label,
+            &:not(:placeholder-shown) + .form-label {
+                transform: translateY(-1.5rem) scale(0.85);
+                color: $gradient-end;
+            }
+        }
+        
+        .form-label {
+            transition: all 0.3s ease;
+            transform-origin: left top;
+        }
+    }
+    
+    // Animation du bouton submit
+    .btn-primary {
+        position: relative;
         overflow: hidden;
-        text-overflow: ellipsis;
+        
+        &::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            transition: left 0.5s;
+        }
+        
+        &:hover::before {
+            left: 100%;
+        }
+    }
+}
+
+// Ajout d'effets de focus améliorés pour mobile
+@media (max-width: 768px) {
+    .contact-form-container {
+        .form-control {
+            &:focus {
+                box-shadow: 0 0 0 0.2rem rgba($gradient-end, 0.15), 
+                           0 4px 12px rgba($gradient-end, 0.1);
+            }
+        }
+        
+        // Animation de tape/touch sur mobile
+        .btn-primary {
+            &:active {
+                transform: scale(0.98);
+            }
+        }
+        
+        // Amélioration du contraste pour la lecture mobile
+        .form-label {
+            font-weight: 600;
+            color: $dark;
+        }
+        
+        // Espacement amélioré pour les doigts
+        .contact-social-links {
+            max-width: 90% !important;
+            margin-left: auto !important;
+            margin-right: auto !important;
+            
+            .social-link {
+                min-width: 44px;
+                min-height: 44px;
+                display: inline-flex;
+                align-items: center;
+                justify-content: center;
+            }
+        }
     }
 } 

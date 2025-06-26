@@ -3,12 +3,12 @@
 {% block title %}Contact - Portfolio{% endblock %}
 
 {% block body %}
-    <div class="contact-header text-center">
+    <div class="contact-header text-center animate-on-scroll" data-animation="fadeInUp">
         <h1 class="section-title">Contactez-moi</h1>
         <p class="lead mb-5">N'hésitez pas à me contacter pour discuter de vos projets ou pour toute question.</p>
     </div>
 
-    <div class="contact-form-container">
+    <div class="contact-form-container animate-on-scroll" data-animation="fadeInUp" data-delay="200">
         <div class="card">
             <div class="card-body">
                 <h2 class="contact-form-title">Formulaire de contact</h2>
@@ -16,32 +16,34 @@
                 {# Affichage des messages de succès ou d'erreur #}
                 {% for label, messages in app.flashes %}
                     {% for message in messages %}
-                        <div class="alert alert-{{ label }} text-center">{{ message }}</div>
+                        <div class="alert alert-{{ label }} text-center animate-on-scroll" data-animation="bounceIn">{{ message }}</div>
                     {% endfor %}
                 {% endfor %}
 
                 <form id="contactForm" method="post" action="{{ path('contact_send') }}">
-                    <div class="form-group">
+                    <div class="form-group animate-on-scroll" data-animation="slideInLeft" data-delay="300">
                         <label for="name" class="form-label">Nom</label>
-                        <input type="text" class="form-control" id="name" name="name" required>
+                        <input type="text" class="form-control" id="name" name="name" placeholder="Votre nom complet" required>
                     </div>
-                    <div class="form-group">
+                    <div class="form-group animate-on-scroll" data-animation="slideInRight" data-delay="400">
                         <label for="email" class="form-label">Email</label>
-                        <input type="email" class="form-control" id="email" name="email" required>
+                        <input type="email" class="form-control" id="email" name="email" placeholder="votre@email.com" required>
                     </div>
-                    <div class="form-group">
+                    <div class="form-group animate-on-scroll" data-animation="slideInLeft" data-delay="500">
                         <label for="subject" class="form-label">Sujet</label>
-                        <input type="text" class="form-control" id="subject" name="subject" required>
+                        <input type="text" class="form-control" id="subject" name="subject" placeholder="Objet de votre message" required>
                     </div>
-                    <div class="form-group">
+                    <div class="form-group animate-on-scroll" data-animation="slideInRight" data-delay="600">
                         <label for="message" class="form-label">Message</label>
-                        <textarea class="form-control" id="message" name="message" rows="5" required></textarea>
+                        <textarea class="form-control" id="message" name="message" rows="5" placeholder="Décrivez votre projet ou votre demande..." required></textarea>
                     </div>
-                    <button type="submit" class="btn btn-primary">ENVOYER</button>
+                    <button type="submit" class="btn btn-primary animate-on-scroll" data-animation="bounceIn" data-delay="700">
+                        <i class="fas fa-paper-plane me-2"></i>ENVOYER
+                    </button>
                 </form>
 
                 {# Logos sociaux centrés sous le formulaire #}
-                <div class="text-center mt-4">
+                <div class="text-center mt-4 animate-on-scroll" data-animation="fadeInUp" data-delay="800">
                     {% include '_partials/social_links.html.twig' with {
                         'show_text': false,
                         'class': 'contact-social-links',
