@@ -218,6 +218,30 @@ Portfolio : [URL du portfolio]
 Email : [votre-email]  
 LinkedIn : [votre-linkedin]
 
+# Créer le service
+sudo cat > /etc/systemd/system/portfolio-messenger.service << 'EOF'
+[Unit]
+Description=Portfolio Symfony Messenger Worker
+After=network.target
+
+[Service]
+Type=simple
+User=www-data
+WorkingDirectory=/var/www/vhosts/adrien-pago-portfolio.fr/httpdocs
+ExecStart=/usr/bin/php bin/console messenger:consume --env=prod --time-limit=3600 --memory-limit=128M
+Restart=always
+RestartSec=5
+
+[Install]
+WantedBy=multi-user.target
+EOF
+
+# Activer et démarrer le service
+sudo systemctl daemon-reload
+sudo systemctl enable portfolio-messenger
+sudo systemctl start portfolio-messenger
+sudo systemctl status portfolio-messenger
+
 ---
 
 *Portfolio en constante évolution - Dernière mise à jour : Décembre 2024* 
