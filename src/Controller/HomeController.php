@@ -199,7 +199,7 @@ class HomeController extends AbstractController
                 'id' => 3,
                 'title' => 'VacaMeet Web',
                 'slug' => 'VacaMeetWeb',
-                'description' => 'Vaca-Meet est une application web pour les gérants de campings et clubs de vacances, permettant de gérer efficacement leur planning d\'activités et leurs services. Le système est complété par une application mobile destinée aux vacanciers, leur offrant un accès facile aux activités, services proposés par le camping et bien pleins d\'autres options .....',
+                'description' => 'Vaca-Meet est une application web pour les gérants de campings et clubs de vacances, permettant de gérer efficacement leur planning d\'activités et leurs services. Le système est complété par une application mobile destinée aux vacanciers, leur offrant un accès facile aux activités, services proposés par le camping et pleins d\'autres options .....',
                 'category' => 'web',
                 'cover_image' => 'VacaMeetWeb-Cover.PNG',
                 'demo_image' => 'Demo/Demo.PNG',
