@@ -222,6 +222,20 @@ class HomeController extends AbstractController
                 'demo_url' => null,
                 'created_at' => new \DateTime('2025-09-10'),
                 'featured' => true
+            ],
+            [
+                'id' => 5,
+                'title' => 'Bot Discord',
+                'slug' => 'BotDiscord',
+                'description' => 'Un bot Discord avancé et complet pour la gestion et la surveillance d\'un serveur Conan Exiles. Ce bot offre une suite complète d\'outils pour les administrateurs et les joueurs, incluant le suivi des activités, la gestion des items, un système de boutique, et bien plus encore.',
+                'category' => 'autre',
+                'cover_image' => 'BotDiscord-Cover.png',
+                'demo_image' => 'Demo/Demo.PNG',
+                'tags' => ['Python', 'SqLite', 'Bash','Powershell','Discord'],
+                'github_url' => 'https://github.com/adrien-pago/Bot_Conan',
+                'demo_url' => null,
+                'created_at' => new \DateTime('2025-10-11'),
+                'featured' => true
             ]
         ];
 
