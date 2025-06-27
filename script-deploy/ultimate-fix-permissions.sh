@@ -9,12 +9,22 @@ echo "Utilisateur actuel: $(whoami)"
 echo "UID actuel: $(id -u)"
 echo "Groupes: $(groups)"
 
-# 2. Forcer la suppression complète du répertoire public
+# 2. Forcer la suppression complète du répertoire public (en préservant .env)
 echo "💥 Suppression forcée du répertoire public..."
+# Sauvegarder .env s'il existe
+if [ -f ".env" ]; then
+    cp .env /tmp/.env.backup
+    echo "💾 Sauvegarde de .env effectuée"
+fi
 sudo rm -rf public/
 mkdir -p public/
 mkdir -p public/build
 mkdir -p public/uploads
+# Restaurer .env
+if [ -f "/tmp/.env.backup" ]; then
+    cp /tmp/.env.backup .env
+    echo "🔄 Restauration de .env effectuée"
+fi
 
 # 3. Permissions ultra-permissives temporaires
 echo "🔓 Permissions ultra-permissives..."
