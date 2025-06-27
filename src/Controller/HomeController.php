@@ -215,7 +215,7 @@ class HomeController extends AbstractController
                 'slug' => 'VacaMeetMobile',
                 'description' => 'Vaca Meet est une application mobile permettant aux utilisateurs de se connecter et d\'avoir connaissance de toutes les activités et plus du camping. Elle utilise une architecture moderne avec Flutter pour le frontend et une API RESTful Symfony pour le backend.',
                 'category' => 'mobile',
-                'cover_image' => 'VacaMeetMobile-Cover.PNG',
+                'cover_image' => 'VacaMeetMobile-Cover.png',
                 'demo_image' => 'Demo/Demo.PNG',
                 'tags' => ['React', 'Flutter', 'Symphony API','MySQL'],
                 'github_url' => 'https://github.com/adrien-pago/Vaca_Meet_Flutter',
