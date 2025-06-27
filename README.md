@@ -133,7 +133,7 @@ php bin/console doctrine:migrations:status
 # Si vous voulez créer une nouvelle migration
 php bin/console make:migration
 
-#Vider et recréer la base de données
+#cd ..Vider et recréer la base de données
 php bin/console doctrine:database:drop --force
 php bin/console doctrine:database:create
 php bin/console doctrine:migrations:migrate
